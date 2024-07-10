@@ -6,5 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'FirstEvoApp';
+  date_now = new Date();
+  array_cars = [{name: 'Volvo' }, {name: 'Lada' }, {name: 'BMW' }];
+  number = 6;
 }
