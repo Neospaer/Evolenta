@@ -9,10 +9,9 @@ import { ActivatedRoute } from '@angular/router';
 export class ItemComponent implements OnInit {
 
 
-  constructor(private activatedRouter: ActivatedRoute) { }
+  constructor() { }
 
   ngOnInit() {
-    console.log(this.activatedRouter.snapshot.params)
   }
 
 }
