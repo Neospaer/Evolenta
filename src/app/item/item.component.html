@@ -1,1 +1,6 @@
 <h1>Item</h1>
+<a routerLink="details">Details</a>
+<br>
+<a routerLink="list" [queryParams]="{'product':'phone', 'price': 150}">List</a>
+
+<router-outlet></router-outlet>
