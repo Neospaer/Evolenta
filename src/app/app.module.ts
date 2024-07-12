@@ -9,7 +9,7 @@ import { ItemComponent } from './item/item.component';
 import { MainComponent } from './main/main.component';
 
 @NgModule({
-  declarations: [				
+  declarations: [					
     AppComponent,
       ContactComponent,
       AboutComponent,
