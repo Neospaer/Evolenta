@@ -13,7 +13,6 @@ export class AppComponent implements OnInit{
 
   ngOnInit(): void {
     this.title.setTitle('Desk Page')
-    console.log(this.title.getTitle())
-    console.log(this.meta.addTag({ name: 'og:desc', content: 'root_desc' }))
+    this.meta.addTag({ name: 'og:desc', content: 'root_desc' })
   }
 }

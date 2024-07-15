@@ -9,14 +9,13 @@ import { Meta, Title } from '@angular/platform-browser';
 export class InlineComponent implements OnInit {
 
   constructor(private meta: Meta,private title: Title) { 
-    this.meta.addTag({name: 'title',content: 'The Rock'})
-    this.meta.addTag({name: 'type', content: 'video.movie'})
-    this.meta.addTag({name: 'url', content: '//www.imdb.com/title/tt0117500/'})
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.title.setTitle('Open Graph Page')
-
+    this.meta.addTag({name: 'og:title',content: 'The Rock'})
+    this.meta.addTag({name: 'og:type', content: 'video.movie'})
+    this.meta.addTag({name: 'og:url', content: '//www.imdb.com/title/tt0117500/'})
   }
 
 }
