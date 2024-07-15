@@ -7,20 +7,16 @@ import { Notify } from 'notiflix/build/notiflix-notify-aio';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  notiflix_alert(type: string) {
-    switch (type) {
-      case 'success':
-        Notify.success('Success Alert');
-        break;
-      case 'warning':
-        Notify.warning('Warning Alert');
-        break;
-      case 'error':
-        Notify.failure('Error Alert');
-        break;
-      case 'info':
-        Notify.info('Info Alert');
-        break;
-    }
-  }
+
+    showIndicator = true;
+ 
+    switchIndicator(): void {
+      this.showIndicator = !this.showIndicator;
+      if(this.showIndicator){
+        Notify.info('Indicator is visible');
+      }
+      else {
+        Notify.info('Indicator is not visible')
+      }
+    } 
 }
