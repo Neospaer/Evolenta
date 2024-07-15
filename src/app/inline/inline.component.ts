@@ -13,9 +13,9 @@ export class InlineComponent implements OnInit {
 
   ngOnInit(): void {
     this.title.setTitle('Open Graph Page')
-    this.meta.addTag({name: 'og:title',content: 'The Rock'})
-    this.meta.addTag({name: 'og:type', content: 'video.movie'})
-    this.meta.addTag({name: 'og:url', content: '//www.imdb.com/title/tt0117500/'})
+    this.meta.addTag({property: 'og:title',content: 'The Rock'})
+    this.meta.addTag({property: 'og:type', content: 'video.movie'})
+    this.meta.addTag({property: 'og:url', content: '//www.imdb.com/title/tt0117500/'})
   }
 
 }
