@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Users } from './interface/Users';
+import { ResponseService } from './response.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'FirstEvoApp';
+
+  arrUsers: Users[] = []
+  
+  constructor(public responseServ: ResponseService){
+    this.arrUsers = this.responseServ.getUsers()
+  }
 }
