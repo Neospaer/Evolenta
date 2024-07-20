@@ -26,8 +26,4 @@ export class ResponseService {
       "completed": false
     }
   ]
-  getUsers(): Users[] {
-    return this.arr
-  }
-
 }
