@@ -1,3 +1,14 @@
 p {
     font-family: Lato;
   }
+  .example-label {
+    display: flex;
+    font-size: 14px;
+    margin-left: 8px;
+    min-width: 120px;
+  }
+  
+  .example-button-row {
+    display: flex;
+    max-width: 600px;
+  }

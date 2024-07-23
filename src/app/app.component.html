@@ -1,4 +1,62 @@
-<form class="container my-auto">
+<form class="example-form">
+  <div>
+    <mat-form-field class="example-full-width">
+      <mat-label>Название</mat-label>
+      <input matInput 
+      pattern="[а-яА-ЯеЁ]*"
+      required 
+      #name="ngModel"
+      name="name"  
+      [(ngModel)]="create_book.name"/> 
+    </mat-form-field>
+  </div>
+  <div *ngIf="name.invalid && (name.dirty || name.touched)">
+    <div
+      *ngIf="name.hasError('required')"
+      class="alert alert-danger mt-2"
+      role="alert"
+    >
+      Поле должно быть заполнено
+    </div>
+    <div
+      *ngIf="name.hasError('pattern')"
+      class="alert alert-danger mt-2"
+      role="alert"
+    >
+      Поле должно содержать только русские буквы, без пробелов, без цифр, без спец. символов
+    </div>
+  </div>
+  <div>
+    <mat-form-field class="example-full-width">
+      <mat-label>Автор</mat-label>
+      <input matInput 
+      pattern="[а-яА-ЯеЁ]*"
+      required 
+      #author="ngModel"
+      name="author"  
+      [(ngModel)]="create_book.author"/> 
+    </mat-form-field>
+  </div>
+  <div *ngIf="author.invalid && (author.dirty || author.touched)">
+    <div
+      *ngIf="author.hasError('required')"
+      class="alert alert-danger mt-2"
+      role="alert"
+    >
+      Поле должно быть заполнено
+    </div>
+    <div
+      *ngIf="author.hasError('pattern')"
+      class="alert alert-danger mt-2"
+      role="alert"
+    >
+      Поле должно содержать только русские буквы, без пробелов, без цифр, без спец. символов
+    </div>
+  </div>
+</form>
+
+
+<!-- <form class="container my-auto">
   <div class="mb-3">
     <label class="form-label">Название</label>
     <input
@@ -34,24 +92,33 @@
   class="btn btn-primary">
     Добавить
   </button>
-</form>
+</form> -->
+  <button
+    [disabled]="name.invalid || author.invalid"
+    (click)="creatBook()"
+    type="submit"
+    class="btn btn-primary"
+  >Добавить
+  </button>
 
-<div>
-  <h1 class="display-6 container m-5">Список книг</h1>
-  <table class="table table-striped container pt-10">
-    <thead>
-      <tr>
-        <th scope="col">Номер</th>
-        <th scope="col">Имя</th>
-        <th scope="col">Фамилия</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let person of Books; index as i">
-        <th scope="row">{{ i + 1 }}</th>
-        <td>{{ person.name }}</td>
-        <td>{{ person.author }}</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+
+
+<table mat-table [dataSource]="Books" class="mat-elevation-z8">
+  <ng-container matColumnDef="Номер">
+    <th mat-header-cell *matHeaderCellDef> Номер </th>
+    <td mat-cell *matCellDef="let Books"> {{Books.number}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="Название">
+    <th mat-header-cell *matHeaderCellDef> Имя </th>
+    <td mat-cell *matCellDef="let Books"> {{Books.name}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="Автор">
+    <th mat-header-cell *matHeaderCellDef> Автор </th>
+    <td mat-cell *matCellDef="let Books"> {{Books.author}} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

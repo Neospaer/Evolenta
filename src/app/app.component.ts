@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Book } from './Book';
+import { MatTable } from '@angular/material/table';
+
 
 @Component({
   selector: 'app-root',
@@ -7,6 +9,8 @@ import { Book } from './Book';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  
+  @ViewChild(MatTable) table!: MatTable<any>;
 
   Books: Book[] = [
     {
@@ -29,10 +33,16 @@ export class AppComponent {
     name: null,
     author: null,
   };
+
+  displayedColumns: string[] = ['Номер', 'Название', 'Автор'];
+  dataSource = this.Books;
+
   creatBook(){
     this.Books.push({
+      number: this.Books.length,
       name: this.create_book.name,
       author: this.create_book.author
     })
+    this.table.renderRows();
   }
 }
