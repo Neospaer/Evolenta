@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { interval, map, Observable, Subscription } from 'rxjs';
+import { CounterService } from './counter.service';
 
 @Component({
   selector: 'app-root',
@@ -10,17 +11,18 @@ export class AppComponent {
   
   sequenceNumbers: number[] = [];
   randomNumbers: string[] = [];
-  sequenceSubscription$: Subscription | undefined;
-  randomSubscription$: Subscription | undefined;
+  sequenceSubscription$!: Subscription;
+  randomSubscription$!: Subscription;
   lastSequenceNumber: number = 0;
   sequenceActive = false;
   randomActive = false;
 
+  constructor(public counterService: CounterService) {}
+
   startSequence() {
     if (!this.sequenceActive) {
-      this.sequenceSubscription$ = interval(2000).subscribe(() => {
-        this.sequenceNumbers.push(this.lastSequenceNumber);
-        this.lastSequenceNumber++;
+      this.sequenceSubscription$ = this.counterService.setCounter().subscribe((value) => {
+        this.sequenceNumbers.push(value);
       });
       this.sequenceActive = true;
     }
@@ -29,8 +31,8 @@ export class AppComponent {
   startRandom() {
     if (!this.randomActive) {
       this.randomSubscription$ = interval(2000).pipe(
-        map(() => `Random Value: ${Math.floor(Math.random() * 10000)}`)
-      ).subscribe(value => {
+        map(() => `Random Value: ${Math.floor(Math.random() * 100)}`)
+      ).subscribe((value) => {
         this.randomNumbers.push(value);
       });
       this.randomActive = true;
@@ -38,17 +40,17 @@ export class AppComponent {
   }
 
   stopSequence() {
-    if (this.sequenceSubscription$ && this.sequenceActive) {
+    if (this.sequenceActive) {
       this.sequenceSubscription$.unsubscribe();
-      this.sequenceActive = false;
     }
+    this.sequenceActive = false;
   }
 
   stopRandom() {
-    if (this.randomSubscription$ && this.randomActive) {
+    if (this.randomActive) {
       this.randomSubscription$.unsubscribe();
-      this.randomActive = false;
     }
+    this.randomActive = false;
   }
 
 }
