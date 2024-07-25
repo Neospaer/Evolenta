@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { interval, map, Subscription } from 'rxjs';
+import { interval, map, Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -10,35 +10,45 @@ export class AppComponent {
   
   sequenceNumbers: number[] = [];
   randomNumbers: string[] = [];
-  sequenceSubscription: Subscription | null = null;
-  randomSubscription: Subscription | null = null;
+  sequenceSubscription$: Subscription | undefined;
+  randomSubscription$: Subscription | undefined;
+  lastSequenceNumber: number = 0;
+  sequenceActive = false;
+  randomActive = false;
 
   startSequence() {
-    if (!this.sequenceSubscription) {
-      this.sequenceSubscription = interval(2000).subscribe(num => {
-        this.sequenceNumbers.push(num);
+    if (!this.sequenceActive) {
+      this.sequenceSubscription$ = interval(2000).subscribe(() => {
+        this.sequenceNumbers.push(this.lastSequenceNumber);
+        this.lastSequenceNumber++;
       });
+      this.sequenceActive = true;
     }
   }
 
   startRandom() {
-    if (!this.randomSubscription) {
-      this.randomSubscription = interval(2000).pipe(
+    if (!this.randomActive) {
+      this.randomSubscription$ = interval(2000).pipe(
         map(() => `Random Value: ${Math.floor(Math.random() * 10000)}`)
       ).subscribe(value => {
         this.randomNumbers.push(value);
       });
+      this.randomActive = true;
     }
   }
 
   stopSequence() {
-    this.sequenceSubscription?.unsubscribe();
-    this.sequenceSubscription = null;
+    if (this.sequenceSubscription$ && this.sequenceActive) {
+      this.sequenceSubscription$.unsubscribe();
+      this.sequenceActive = false;
+    }
   }
 
   stopRandom() {
-    this.randomSubscription?.unsubscribe();
-    this.randomSubscription = null;
+    if (this.randomSubscription$ && this.randomActive) {
+      this.randomSubscription$.unsubscribe();
+      this.randomActive = false;
+    }
   }
 
 }
