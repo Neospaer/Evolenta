@@ -21,13 +21,7 @@ export class PostInfoComponent implements OnInit {
   }
 
   goBackToMain(): void {
-    this.router.navigate(['/']).then(success => {
-      if (success) {
-        Notiflix.Notify.success('Successfully navigated to main page');
-      } else {
-        Notiflix.Notify.failure('Navigation to main page failed');
-      }
-    });
+    this.router.navigate([''])
   }
 
 }

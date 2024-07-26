@@ -56,14 +56,8 @@ export class AppComponent {
     })
   }
   goToPostDetail() {
-    this.router.navigate(['/post-detail']).then(success => {
-      if (success) {
-        console.log('Navigation successful');
-        Notiflix.Notify.success('Successfully navigated to post detail');
-      } else {
-        console.error('Navigation failed');
-        Notiflix.Notify.failure('Navigation failed');
-      }
+    this.router.navigate(['/post-info']).then(() => {
+        console.log('Переход выполнен');
     });
   }
 }

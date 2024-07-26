@@ -4,38 +4,39 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <link rel="stylesheet" href="app.component.css">
 </head>
 <body>
-  <!-- your-component.component.html -->
-<div class="d-flex flex-column align-items-start">
-  <div class="mb-2 d-flex align-items-center">
-    <span class="mr-2">Обычный get:</span>
-    <button (click)="getUsers()" class="btn btn-primary">Выполнить</button>
+  <div class="container mt-5">
+    <div class="button-row">
+      <span class="button-label">Обычный get:</span>
+      <button (click)="getUsers()" class="btn btn-primary">Выполнить</button>
+    </div>
+    <div class="button-row">
+      <span class="button-label">get с параметрами:</span>
+      <button (click)="getUsersParams()" class="btn btn-secondary">Выполнить</button>
+    </div>
+    <div class="button-row">
+      <span class="button-label">post с пустым объектом:</span>
+      <button (click)="postUsers()" class="btn btn-success">Выполнить</button>
+    </div>
+    <div class="button-row">
+      <span class="button-label">get с ошибкой:</span>
+      <button (click)="getErrorUsers()" class="btn btn-danger">Выполнить</button>
+    </div>
+    <div class="button-row">
+      <span class="button-label">get с header:</span>
+      <button (click)="getUsersHeader()" class="btn btn-warning">Выполнить</button>
+    </div>
+    <div class="button-row">
+      <span class="button-label">delete user:</span>
+      <button (click)="deleteUsers()" class="btn btn-info">Выполнить</button>
+    </div>
+    <div class="button-row">
+      <span class="button-label">переход на другую страницу:</span>
+      <button (click)="goToPostDetail()" class="btn btn-outline-secondary">Выполнить</button>
+    </div>
   </div>
-  <div class="mb-2 d-flex align-items-center">
-    <span class="mr-2">get c параметрами:</span>
-    <button (click)="getUsersParams()" class="btn btn-secondary">Выполнить</button>
-  </div>
-  <div class="mb-2 d-flex align-items-center">
-    <span class="mr-2">post с пустым объектом:</span>
-    <button (click)="postUsers()" class="btn btn-success">Выполнить</button>
-  </div>
-  <div class="mb-2 d-flex align-items-center">
-    <span class="mr-2">get с ошибкой:</span>
-    <button (click)="getErrorUsers()" class="btn btn-danger">Выполнить</button>
-  </div>
-  <div class="mb-2 d-flex align-items-center">
-    <span class="mr-2">get с header:</span>
-    <button (click)="getUsersHeader()" class="btn btn-warning">Выполнить</button>
-  </div>
-  <div class="mb-2 d-flex align-items-center">
-    <span class="mr-2">delete user:</span>
-    <button (click)="deleteUsers()" class="btn btn-info">Выполнить</button>
-  </div>
-</div>
-<button type="button" class="btn btn-outline-success" (click)="goToPostDetail()">
-  Показать детали поста
-</button>
-<router-outlet></router-outlet>
+  <router-outlet></router-outlet>
 </body>
 </html>

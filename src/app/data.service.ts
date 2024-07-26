@@ -30,11 +30,6 @@ constructor(private http: HttpClient) { }
   }
 
   getPostInfo(): Observable<Post> {
-    return this.http.get<Post>('https://jsonplaceholder.typicode.com/posts/1').pipe(
-      catchError(error => {
-        console.error('Error occurred:', error);
-        return throwError(() => error);
-      })
-    );
+    return this.http.get<Post>('https://jsonplaceholder.typicode.com/posts/1')
   }
 }

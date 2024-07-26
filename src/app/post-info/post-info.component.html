@@ -1,8 +1,8 @@
-<div class="package">
-  <h2>Post Details</h2>
+<div class="container mt-5">
+  <h2>Post Info</h2>
   <pre>{{ postData | json }}</pre>
-
-  <button type="button" class="btn btn-outline-secondary" (click)="goBackToMain()">
-    Вернуться на главную
-  </button>
+  <div class="button-row">
+    <span class="button-label">Переход на основную страницу:</span>
+    <button (click)="goBackToMain()" class="btn btn-outline-secondary">Выполнить</button>
+  </div>
 </div>
