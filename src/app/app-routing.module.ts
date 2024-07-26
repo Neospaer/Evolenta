@@ -5,7 +5,7 @@ import { PreFetchingResolver } from './pre-fetching.resolver';
 
 const routes: Routes = [
   {
-    path: 'post',
+    path: 'post-detail',
     component: PostInfoComponent,
     resolve: {post: PreFetchingResolver}
   },

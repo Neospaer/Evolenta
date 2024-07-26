@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Post } from './post';
-import { Observable } from 'rxjs';
+import { catchError, Observable, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -30,6 +30,11 @@ constructor(private http: HttpClient) { }
   }
 
   getPostInfo(): Observable<Post> {
-    return this.http.get<Post>('https://jsonplaceholder.typicode.com/posts/1')
+    return this.http.get<Post>('https://jsonplaceholder.typicode.com/posts/1').pipe(
+      catchError(error => {
+        console.error('Error occurred:', error);
+        return throwError(() => error);
+      })
+    );
   }
 }

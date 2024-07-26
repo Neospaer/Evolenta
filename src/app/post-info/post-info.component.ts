@@ -12,7 +12,7 @@ export class PostInfoComponent implements OnInit {
 
   postData!: Post;
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute, private router: Router) {}
 
   ngOnInit(): void {
     this.route.data.subscribe(data => {

@@ -11,7 +11,9 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
   
-  constructor(private dataServie: DataService){}
+  constructor(private dataServie: DataService,
+    private router: Router
+  ){}
 
   getUsers(){
     this.dataServie.getUser().subscribe({
@@ -53,7 +55,6 @@ export class AppComponent {
       next: () => {console.log('User deleted')}
     })
   }
-  
   goToPostDetail() {
     this.router.navigate(['/post-detail']).then(success => {
       if (success) {
