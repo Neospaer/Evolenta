@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-item-list',
@@ -9,11 +8,9 @@ import { ActivatedRoute } from '@angular/router';
 export class ItemListComponent implements OnInit {
 
   constructor(
-    private activedRouter: ActivatedRoute
   ) { }
 
   ngOnInit() {
-    console.log(this.activedRouter.snapshot.queryParams)
   }
 
 }
