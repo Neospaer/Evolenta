@@ -10,7 +10,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 export class AppComponent {
   
-  Users: User | null = null;
+  Users!: User;
 
   constructor(private dataService: DataService){}
   
