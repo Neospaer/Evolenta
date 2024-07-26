@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ComponentRef, ViewChild, ViewContainerRef } from '@angular/core';
+import { DynamicTableComponent } from './dynamic-table/dynamic-table.component';
+
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,16 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'FirstEvoApp';
+  @ViewChild('container', { read: ViewContainerRef}) 
+  private viewRef!: ViewContainerRef;
+  private componentRef!: ComponentRef<DynamicTableComponent>
+
+  addComponent() {
+    this.viewRef.clear();
+    this.componentRef = this.viewRef.createComponent(DynamicTableComponent);
+  }
+
+  deleteComponent() {
+    this.viewRef.clear();
+  }
 }
