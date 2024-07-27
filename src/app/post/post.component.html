@@ -3,7 +3,7 @@
     <div class="card-body">
       <h5 class="card-title">Пользователь {{ u.id }}</h5>
       <p class="card-text">{{ u.title }}</p>
-      <a [routerLink]="['/post', '1']" class="btn btn-primary">Посмотреть данные</a>
+      <a [routerLink]="['/post', 'u.id']" class="btn btn-primary">Посмотреть данные</a>
     </div>
   </div>
 </div>

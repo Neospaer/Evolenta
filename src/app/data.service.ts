@@ -15,6 +15,7 @@ export class DataService {
   getUser(): Observable<User[]>{
     return this.http.get<User[]>('https://jsonplaceholder.typicode.com/posts')
   }
+  
   setUserData(users: User[]): void {
     this.users = users;
   }
