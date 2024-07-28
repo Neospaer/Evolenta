@@ -1,9 +1,15 @@
+export interface Todo {
+  id?: number;
+  value: string;
+  completed?: boolean;
+}
+
 export class AddTodo {
-    static readonly type = '[Todo] Add Todo';
-    constructor(public todo: string) {}
-  }
-  
-  export class RemoveTodo {
-    static readonly type = '[Todo] Remove Todo';
-    constructor(public todo: string) {}
-  }
+  static readonly type = '[Todo] Add';
+  constructor(public payload: Todo) {}
+}
+
+export class UpdateTodo {
+  static readonly type = '[Todo] Update';
+  constructor(public index: number, public checked: boolean) {}
+}

@@ -1,28 +1,37 @@
 import { State, Action, StateContext, Selector } from '@ngxs/store';
-import { AddTodo, RemoveTodo } from './todo.action';
+import {AddTodo, Todo, UpdateTodo} from "./todo.action";
 
 export interface TodoStateModel {
-  todos: string[];
+  todos: Todo[];
 }
 
 @State<TodoStateModel>({
   name: 'todos',
   defaults: {
-    todos: [],
-  },
+    todos: []
+  }
 })
 export class TodoState {
+  private taskId = 0;
+
   @Selector()
   static getTodos(state: TodoStateModel) {
     return state.todos;
   }
 
   @Action(AddTodo)
-  addTodo(ctx: StateContext<TodoStateModel>, action: AddTodo) {
-    const state = ctx.getState();
-    ctx.patchState({
-      todos: [...state.todos, action.todo],
-    });
+  add({ getState, patchState }: StateContext<TodoStateModel>, { payload }: AddTodo) {
+    const state = getState();
+    this.taskId += 1;
+    payload.id = this.taskId;
+    patchState({ todos: [...state.todos, payload] });
   }
 
+  @Action(UpdateTodo)
+  update({ getState, setState }: StateContext<TodoStateModel>, { index, checked }: UpdateTodo) {
+    const state = getState();
+    const todos = [...state.todos];
+    todos[index] = { ...todos[index], completed: checked };
+    setState({ todos });
+  }
 }

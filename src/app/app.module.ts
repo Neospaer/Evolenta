@@ -11,6 +11,7 @@ import { AddComponent } from './add/add.component';
 import { ViewComponent } from './view/view.component';
 import { DataService } from './data.service';
 import { ReactiveFormsModule } from '@angular/forms';
+import { TodoState } from './store/todo.state';
 
 @NgModule({
   declarations: [			
@@ -21,7 +22,7 @@ import { ReactiveFormsModule } from '@angular/forms';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgxsModule.forRoot([]),
+    NgxsModule.forRoot([TodoState]),
     NgxsLoggerPluginModule.forRoot(),
     NgxsReduxDevtoolsPluginModule.forRoot(),
     FormsModule,
