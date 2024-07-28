@@ -1,26 +1,25 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { User } from './User';
-import { Observable } from 'rxjs';
+import { catchError, map, Observable, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
   role: 'user' | 'admin' = 'user';
-  private users: User[] = []
+
   
   constructor(private http: HttpClient) { }
 
-  getUser(): Observable<User[]>{
-    return this.http.get<User[]>('https://jsonplaceholder.typicode.com/posts')
+  getUser(){
+    return this.http.get<User[]>('https://jsonplaceholder.typicode.com/posts').pipe(
+      map((response) => response as User[]),
+      catchError((error) => {
+        console.error('Error occurred:', error);
+        return throwError(() => error);
+      })
+    );
   }
   
-  setUserData(users: User[]): void {
-    this.users = users;
-  }
-
-  getUserById(id: number): User | undefined {
-    return this.users.find(user => user.id === id);
-  }
 }

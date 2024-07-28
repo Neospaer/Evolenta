@@ -8,7 +8,7 @@ import { AccessRoleGuard } from './access-role.guard';
 const routes: Routes = [
   {
     path: ' ',
-    redirectTo: '/post',
+    redirectTo: 'post',
     pathMatch: 'full'
   },
   {
@@ -17,14 +17,12 @@ const routes: Routes = [
   },
   {
     path: 'post',
-    component: PostComponent,
-    canActivateChild: [AccessRoleGuard],
-    children:[
-      {
-        path: ':id',
-        component: PostDetailsComponent
-      }
-    ]
+    component: PostComponent
+  },
+  {
+    path: 'post/:id',
+    component: PostDetailsComponent,
+    canActivate: [AccessRoleGuard]
   }
 ];
 

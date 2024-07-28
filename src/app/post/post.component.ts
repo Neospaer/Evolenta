@@ -17,7 +17,6 @@ export class PostComponent implements OnInit {
     this.dataService.getUser().subscribe({
       next: (response: User[]) => {
         this.user = response;
-        this.dataService.setUserData(this.user);
       },
       error: (error) => {
         console.error('Ошибка при получении данных', error);

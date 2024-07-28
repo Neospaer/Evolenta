@@ -10,19 +10,22 @@ import { DataService } from './data.service';
 import { AccessRoleGuard } from './access-role.guard';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
-
+import { FormsModule } from '@angular/forms';
+import { PostDetailsComponent } from './post/post-details/post-details.component';
 @NgModule({
   declarations: [		
     AppComponent,
       ErrorComponent,
-      PostComponent
+      PostComponent,
+      PostDetailsComponent
    ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    CommonModule
+    CommonModule,
+    FormsModule
   ],
   providers: [DataService,AccessRoleGuard],
   bootstrap: [AppComponent]

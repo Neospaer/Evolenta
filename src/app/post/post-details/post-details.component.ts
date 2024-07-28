@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PostComponent } from '../post.component';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, ParamMap } from '@angular/router';
 import { DataService } from 'src/app/data.service';
 import { User } from 'src/app/User';
 
@@ -10,29 +10,29 @@ import { User } from 'src/app/User';
   styleUrls: ['./post-details.component.css']
 })
 export class PostDetailsComponent implements OnInit {
-  
+
   post!: User;
+  Edit = false;
 
   constructor(
     private route: ActivatedRoute,
     private dataService: DataService,
-    private postUser: PostComponent
   ) { }
 
   ngOnInit(): void {
-    // const id = Number(this.route.snapshot.paramMap.get('id'));
-    const id = 1;
-    this.post = this.dataService.getUserById(id)!;
-    console.log(this.post)
-    // if (id) {
-    //   const post = this.dataService.getUserById(id);
-    //   if (post) {
-    //     this.post = post;
-    //   } else {
-    //     console.error(`Post with id ${id} not found`);
-    //   }
-    // } else {
-    //   console.error('Invalid post id');
-    // }
+    let id = +this.route.snapshot.paramMap.get('id')!;
+    this.dataService.getUser().subscribe({
+      next: (response) => {
+        this.post = response.find(user => user.id === id)!;
+      }
+    })
+  }
+
+  Editing() {
+    this.Edit = !this.Edit;
+  }
+
+  Saving(){
+    this.Edit = !this.Edit;
   }
 }

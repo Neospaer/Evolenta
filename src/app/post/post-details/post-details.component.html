@@ -9,11 +9,30 @@
   </thead>
   <tbody>
     <tr>
-      <th scope="row">{{ post.id }}</th>
-      <td>{{ post.title }}</td>
-      <td>{{ post.body }}</td>
+      <ng-container *ngIf="!Edit; else redactor" >
+        <th scope="row">{{ post.id }}</th>
+        <td>{{ post.body }}</td>
+        <td>{{ post.title }}</td>
+      </ng-container>
+      <ng-template #redactor>
+        <td>
+          <input [(ngModel)]="post.userId" type="number"/>
+        </td>
+        <td>
+          <input [(ngModel)]="post.body" type="text"/>
+        </td>
+        <td>
+          <input [(ngModel)]="post.title" type="text"/>
+        </td>
+      </ng-template>
     </tr>
   </tbody>
 </table>
+<button *ngIf="!Edit" (click)="Editing()" class="btn btn-outline-secondary">
+  Редактировать
+</button>
+<button *ngIf="Edit" (click)="Saving()" class="btn btn-outline-secondary">
+  Сохранить
+</button>
 
-<a routerLink="/" class="btn btn-link">На главную</a>
+<a routerLink="" class="btn btn-link">На главную</a>
