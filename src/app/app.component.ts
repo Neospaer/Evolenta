@@ -7,4 +7,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'FirstEvoApp';
+  onValueChange(value: any): void {
+    console.log('onValueChange', value);
+  }
 }
