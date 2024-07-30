@@ -14,11 +14,32 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDividerModule } from '@angular/material/divider';
+import { ErrorComponent } from './error/error.component';
+import { AuthorizationComponent } from './authorization/authorization.component';
+import { RegistrationComponent } from './registration/registration.component';
+import { RecipesComponent } from './recipes/recipes.component';
+import { CreateRecipeComponent } from './create-recipe/create-recipe.component';
+import { AdminUsersComponent } from './admin-users/admin-users.component';
+import { AdminRecipesComponent } from './admin-recipes/admin-recipes.component';
+import { AdminerGuard } from './Guards/adminer.guard';
+import { RegisterGuard } from './Guards/register.guard';
+import { RoleService } from './Service/role.service';
+import { DataService } from './Service/data.service';
+import { HttpClientModule } from '@angular/common/http';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [							
+    AppComponent,
+      ErrorComponent,
+      AuthorizationComponent,
+      RegistrationComponent,
+      RecipesComponent,
+      CreateRecipeComponent,
+      AdminUsersComponent,
+      AdminRecipesComponent,
+      HomeComponent
+   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -34,8 +55,9 @@ import { MatDividerModule } from '@angular/material/divider';
     MatSnackBarModule,
     BrowserAnimationsModule,
     MatDividerModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [AdminerGuard,RegisterGuard,RoleService,DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
