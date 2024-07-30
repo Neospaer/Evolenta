@@ -1,20 +1,40 @@
-<div class="row">
-  <div class="col-xs-12 col-12 col-md-4 form-group mb-3">
-    <input
-      type="text"
-      placeholder="Datepicker"
-      class="form-control"
-      bsDatepicker
-      (bsValueChange)="onValueChange($event)"
-    />
-  </div>
-  <div class="col-xs-12 col-12 col-md-4 form-group mb-3">
-    <input
-      type="text"
-      placeholder="Daterangepicker"
-      class="form-control"
-      bsDaterangepicker
-      (bsValueChange)="onValueChange($event)"
-    />
-  </div>
+<mat-toolbar color="primary" class="toolbar">
+  <span>Foodie</span>
+  <span class="spacer"></span>
+  <nav>
+    <a mat-button>Главная</a>
+    <a mat-button>Каталог рецептов</a>
+  </nav>
+</mat-toolbar>
+
+<div class="login-container">
+  <mat-card class="login-card">
+    <h2>Войдите в ваш аккаунт</h2>
+    <form>
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Логин</mat-label>
+        <input matInput placeholder="Логин" />
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Пароль</mat-label>
+        <input matInput type="password" placeholder="Пароль" />
+        <mat-error>Неверный пароль</mat-error>
+      </mat-form-field>
+      <mat-checkbox>Быстрая сессия</mat-checkbox>
+      <button mat-raised-button color="primary" class="full-width">Вход</button>
+    </form>
+    <a mat-button color="accent" class="register-link">Зарегистрироваться</a>
+    <mat-divider></mat-divider>
+    <button mat-icon-button class="social-login">
+      <mat-icon>login</mat-icon>
+    </button>
+  </mat-card>
 </div>
+
+<footer>
+  <p>© 2023 Foodie, Все права защищены.</p>
+  <div class="social-icons">
+    <mat-icon>github</mat-icon>
+    <mat-icon>dribbble</mat-icon>
+  </div>
+</footer>
