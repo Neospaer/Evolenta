@@ -1,3 +1,39 @@
-<p>
-  home works!
-</p>
+<div class="carousel-container">
+  <carousel [itemsPerSlide]="1" [interval]="5000" [pauseOnFocus]="true" [showIndicators]="false">
+    <slide *ngFor="let recipe of recipes">
+      <div class="slide-content">
+        <div class="text-section">
+          <h2>{{recipe.title}}</h2>
+          <p>{{recipe.body}}</p>
+          <div class="details">
+            <span><mat-icon>schedule</mat-icon> {{recipe.timeCooking}} минут</span>
+            <span><mat-icon>restaurant</mat-icon> {{recipe.tags.join(', ')}}</span>
+            <span><img [src]="recipe.author.avatar" alt="Author" class="avatar"> {{recipe.author.firstName}} {{recipe.author.lastName}}</span>
+            <span>{{recipe.createdOn | date:'dd MMMM yyyy'}}</span>
+          </div>
+          <button mat-raised-button color="primary">Посмотреть</button>
+        </div>
+        <div class="image-section">
+          <img [src]="recipe.image" alt="{{recipe.title}}">
+        </div>
+      </div>
+    </slide>
+  </carousel>
+</div>
+
+<div class="container">
+  <h2>Лучшие рецепты</h2>
+  <p style="align-items: center;">На нашем сайте вы найдете лучшие рецепты, которые помогут вам создать великолепные блюда и порадовать своих близких и гостей своим кулинарным мастерством.</p>
+  <div class="recipe-cards">
+    <mat-card *ngFor="let recipe of recipes" class="recipe-card">
+      <img mat-card-image [src]="recipe.image" alt="{{recipe.title}}">
+      <mat-card-title>{{recipe.title}}</mat-card-title>
+      <mat-card-subtitle>{{recipe.body}}</mat-card-subtitle>
+      <mat-card-content>
+        <p><strong>Время приготовления:</strong> {{recipe.timeCooking}} минут</p>
+        <p><strong>Автор:</strong> {{recipe.author.firstName}} {{recipe.author.lastName}}</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <button mat-raised-button color="primary" (click)="loadMoreRecipes()">Посмотреть еще</button>
+</div>

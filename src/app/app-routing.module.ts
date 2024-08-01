@@ -22,7 +22,7 @@ const routes: Routes = [
     component: RecipesComponent
   },
   {
-    path: 'create-recipe ',
+    path: 'create-recipe',
     component: CreateRecipeComponent
   },
   {

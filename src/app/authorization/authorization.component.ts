@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { DataService } from '../Service/data.service';
 
 @Component({
   selector: 'app-authorization',
@@ -12,7 +13,7 @@ export class AuthorizationComponent implements OnInit {
   loginObj = { username: '', password: '' };
   fastJwt = false;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient,private dataService: DataService) {}
   
   ngOnInit(): void {
   }
@@ -26,6 +27,7 @@ export class AuthorizationComponent implements OnInit {
       .subscribe(
         (response: any) => {
           console.log('Успешная авторизация', response);
+          this.dataService.setToken(response.jwtToken);
         },
         (error) => {
           console.error('Ошибка авторизации', error);

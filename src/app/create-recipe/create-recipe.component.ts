@@ -1,4 +1,8 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { DataService } from '../Service/data.service';
+import * as Notiflix from 'notiflix';
 
 @Component({
   selector: 'app-create-recipe',
@@ -7,9 +11,72 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreateRecipeComponent implements OnInit {
 
-  constructor() { }
+  createRecipeForm: FormGroup;
 
-  ngOnInit() {
+  constructor(private fb: FormBuilder, private http: HttpClient) {
+    this.createRecipeForm = this.fb.group({
+      title: ['', Validators.required],
+      body: ['', Validators.required],
+      tags: this.fb.array([]),
+      image: ['', Validators.required],
+      timeCooking: ['', Validators.required],
+      foodValue: this.fb.group({
+        calories: ['', Validators.required],
+        fats: ['', Validators.required],
+        carbohydrates: ['', Validators.required],
+        proteins: ['', Validators.required]
+      }),
+      cookingSteps: this.fb.array([]),
+      ingredients: this.fb.array([])
+    });
   }
 
+  ngOnInit(): void { }
+
+  get tags(): FormArray {
+    return this.createRecipeForm.get('tags') as FormArray;
+  }
+
+  get cookingSteps(): FormArray {
+    return this.createRecipeForm.get('cookingSteps') as FormArray;
+  }
+
+  get ingredients(): FormArray {
+    return this.createRecipeForm.get('ingredients') as FormArray;
+  }
+
+  addTag(): void {
+    this.tags.push(this.fb.control(''));
+  }
+
+  addCookingStep(): void {
+    this.cookingSteps.push(this.fb.group({
+      title: ['', Validators.required],
+      description: ['', Validators.required]
+    }));
+  }
+
+  addIngredient(): void {
+    this.ingredients.push(this.fb.group({
+      title: ['', Validators.required],
+      description: ['', Validators.required]
+    }));
+  }
+
+  onSubmit(): void {
+    if (this.createRecipeForm.valid) {
+      this.http.post('https://evo-academy.wckz.dev/api/cooking-blog/posts/create', this.createRecipeForm.value)
+        .subscribe(
+          response => {
+            Notiflix.Notify.success('Рецепт успешно создан');
+            this.createRecipeForm.reset();
+          },
+          error => {
+            Notiflix.Notify.failure('Ошибка при создании рецепта');
+          }
+        );
+    } else {
+      Notiflix.Notify.warning('Пожалуйста, заполните все обязательные поля');
+    }
+  }
 }

@@ -27,8 +27,9 @@ import { RoleService } from './Service/role.service';
 import { DataService } from './Service/data.service';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './home/home.component';
-import { FormsModule } from '@angular/forms';
-import { LoginInterceptor } from './interceptor/login.interceptor';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { LoginInterceptor } from './Interceptor/login.interceptor';
+import { CarouselModule } from 'ngx-bootstrap/carousel';
 
 @NgModule({
   declarations: [							
@@ -58,7 +59,9 @@ import { LoginInterceptor } from './interceptor/login.interceptor';
     BrowserAnimationsModule,
     MatDividerModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    CarouselModule.forRoot(),
+    ReactiveFormsModule
   ],
   providers: [AdminerGuard,RegisterGuard,RoleService,DataService,{provide: HTTP_INTERCEPTORS,useClass: LoginInterceptor,multi: true}],
   bootstrap: [AppComponent]

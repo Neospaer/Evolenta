@@ -6,14 +6,22 @@ import {
   HttpInterceptor
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { DataService } from '../Service/data.service';
 
 @Injectable()
 export class LoginInterceptor implements HttpInterceptor {
 
-  constructor() {}
+  constructor(private dataService: DataService) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    request = request.clone();
-    return next.handle(request);
+    const token = this.dataService.getToken();
+    if (token) {
+      const cloned = request.clone({
+        headers: request.headers.set('Authorization', `Bearer ${token}`)
+      });
+      return next.handle(cloned);
+    } else {
+      return next.handle(request);
+    }
   }
 }
