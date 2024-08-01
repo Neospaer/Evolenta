@@ -1,34 +1,23 @@
-
 <div class="login-container">
   <mat-card class="login-card">
     <h2>Войдите в ваш аккаунт</h2>
     <form>
       <mat-form-field appearance="fill" class="full-width">
         <mat-label>Логин</mat-label>
-        <input matInput placeholder="Логин" />
+        <input matInput name="username" [(ngModel)]="loginObj.username" placeholder="Логин"/>
       </mat-form-field>
       <mat-form-field appearance="fill" class="full-width">
         <mat-label>Пароль</mat-label>
-        <input matInput type="password" placeholder="Пароль" />
-        <mat-error>Неверный пароль</mat-error>
+        <input matInput type="password" name="password" [(ngModel)]="loginObj.password" placeholder="Пароль"/>
       </mat-form-field>
-      <mat-checkbox>Быстрая сессия</mat-checkbox>
-      <button mat-raised-button color="primary" class="full-width">Вход</button>
+      <mat-checkbox [(ngModel)]="fastJwt">Быстрая сессия</mat-checkbox>
+      <button mat-raised-button color="primary" class="full-width" routerLink="/" (click)="onLogin()">Вход</button>
     </form>
-    <a mat-button color="accent" class="register-link">Зарегистрироваться</a>
+    <button mat-button color="accent" class="register-link" routerLink="/registration">Зарегистрироваться</button>
     <mat-divider></mat-divider>
     <button mat-icon-button class="social-login">
       <mat-icon>login</mat-icon>
     </button>
   </mat-card>
 </div>
-
-<footer>
-  <p>© 2023 Foodie, Все права защищены.</p>
-  <div class="social-icons">
-    <mat-icon>github</mat-icon>
-    <mat-icon>dribbble</mat-icon>
-  </div>
-</footer>
-
 <router-outlet></router-outlet>

@@ -1,3 +1,28 @@
-<p>
-  registration works!
-</p>
+<div class="register-container">
+  <mat-card class="register-card">
+    <h2>Зарегистрируйте ваш аккаунт</h2>
+    <form>
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Логин</mat-label>
+        <input matInput name="username" [(ngModel)]="registerObj.username" placeholder="Логин"/>
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Пароль</mat-label>
+        <input matInput type="password" name="password" [(ngModel)]="registerObj.password" placeholder="Пароль"/>
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Имя</mat-label>
+        <input matInput name="firstName" [(ngModel)]="registerObj.firstName" placeholder="Имя"/>
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Фамилия</mat-label>
+        <input matInput name="lastName" [(ngModel)]="registerObj.lastName" placeholder="Фамилия"/>
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Отчество (при наличии)</mat-label>
+        <input matInput name="middleName" [(ngModel)]="registerObj.middleName" placeholder="Отчество"/>
+      </mat-form-field>
+      <button mat-raised-button color="primary" class="full-width" routerLink="/" (click)="onRegister()">Зарегистрироваться</button>
+    </form>
+  </mat-card>
+</div>

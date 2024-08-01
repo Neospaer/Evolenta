@@ -25,8 +25,10 @@ import { AdminerGuard } from './Guards/adminer.guard';
 import { RegisterGuard } from './Guards/register.guard';
 import { RoleService } from './Service/role.service';
 import { DataService } from './Service/data.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './home/home.component';
+import { FormsModule } from '@angular/forms';
+import { LoginInterceptor } from './interceptor/login.interceptor';
 
 @NgModule({
   declarations: [							
@@ -55,9 +57,10 @@ import { HomeComponent } from './home/home.component';
     MatSnackBarModule,
     BrowserAnimationsModule,
     MatDividerModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
-  providers: [AdminerGuard,RegisterGuard,RoleService,DataService],
+  providers: [AdminerGuard,RegisterGuard,RoleService,DataService,{provide: HTTP_INTERCEPTORS,useClass: LoginInterceptor,multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
