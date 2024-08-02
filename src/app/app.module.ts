@@ -30,6 +30,7 @@ import { HomeComponent } from './home/home.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginInterceptor } from './Interceptor/login.interceptor';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
+import { MatMenuModule } from '@angular/material/menu';
 
 @NgModule({
   declarations: [							
@@ -61,7 +62,8 @@ import { CarouselModule } from 'ngx-bootstrap/carousel';
     HttpClientModule,
     FormsModule,
     CarouselModule.forRoot(),
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatMenuModule
   ],
   providers: [AdminerGuard,RegisterGuard,RoleService,DataService,{provide: HTTP_INTERCEPTORS,useClass: LoginInterceptor,multi: true}],
   bootstrap: [AppComponent]

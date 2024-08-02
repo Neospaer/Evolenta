@@ -13,21 +13,19 @@ export class AuthorizationComponent implements OnInit {
   loginObj = { username: '', password: '' };
   fastJwt = false;
 
-  constructor(private http: HttpClient,private dataService: DataService) {}
+  constructor(private http: HttpClient, private dataService: DataService, private router: Router) {}
   
   ngOnInit(): void {
   }
 
   onLogin() {
-    const body = { 
-      username: this.loginObj.username, 
-      password: this.loginObj.password 
-    };
+    const body = { username: this.loginObj.username, password: this.loginObj.password };
     this.http.post('https://evo-academy.wckz.dev/api/cooking-blog/users/sign', body, { params: { fastJwt: this.fastJwt } })
       .subscribe(
         (response: any) => {
           console.log('Успешная авторизация', response);
           this.dataService.setToken(response.jwtToken);
+          this.router.navigate(['/']);
         },
         (error) => {
           console.error('Ошибка авторизации', error);

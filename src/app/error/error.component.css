@@ -1,0 +1,41 @@
+.error-container {
+    display: flex;
+    height: calc(100vh - 64px);
+    margin-top: 64px;
+  }
+  
+  .error-content {
+    flex: 1;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .error-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .error-image img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  .links {
+    margin-top: 20px;
+  }
+  
+  .link {
+    cursor: pointer;
+    color: #007bff;
+    text-decoration: none;
+    margin-right: 15px;
+  }
+  
+  .link:hover {
+    text-decoration: underline;
+  }
+  

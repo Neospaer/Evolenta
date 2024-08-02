@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -5,11 +6,12 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './error.component.html',
   styleUrls: ['./error.component.css']
 })
-export class ErrorComponent implements OnInit {
+export class ErrorComponent{
 
-  constructor() { }
+  constructor(private location: Location) { }
 
-  ngOnInit() {
+  goBack(): void {
+    this.location.back();
   }
 
 }
