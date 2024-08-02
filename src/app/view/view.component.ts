@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService, Todo } from '../data.service';
+import { Todo } from '../data.service';
 import { Observable } from 'rxjs';
+import { TodoState } from '../store/todo.state';
+import { Select, Store } from '@ngxs/store';
+import { UpdateTodo } from '../store/todo.action';
 
 @Component({
   selector: 'app-view',
@@ -9,16 +12,13 @@ import { Observable } from 'rxjs';
 })
 export class ViewComponent implements OnInit {
 
-  todos!: Observable<Todo[]>;
-  constructor(private todoService: DataService) {}
+  @Select(TodoState.getTodos) todos$!: Observable<Todo[]>;
 
-  ngOnInit() {
-    this.todos = this.todoService.todos;
+  constructor(private store: Store) {}
+
+  ngOnInit() {}
+
+  completeTask(event: any, index: number) {
+    this.store.dispatch(new UpdateTodo(index, event.target.checked));
   }
-
-  completeTask(event: any, index: any) {
-    console.log(event.checked);
-    this.todoService.updateList(index, event.checked);
-  }
-
 }

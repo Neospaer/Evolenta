@@ -14,11 +14,7 @@ export class AddComponent implements OnInit {
 
   todoForm!: FormGroup;
 
-  constructor(
-    private todoService: DataService,
-    private formBuilder: FormBuilder,
-    private store: Store
-  ) {}
+  constructor(private formBuilder: FormBuilder, private store: Store) {}
 
   ngOnInit() {
     this.todoForm = this.formBuilder.group({

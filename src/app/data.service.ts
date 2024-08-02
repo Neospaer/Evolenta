@@ -16,6 +16,7 @@ export class DataService {
   private dataStore: { todos: Todo[] } = { todos: [] };
   readonly todos = this._todos.asObservable();
   private taskId = 0;
+
   constructor() {}
 
   create(todo: Todo) {
@@ -25,10 +26,10 @@ export class DataService {
     this._todos.next(Object.assign({}, this.dataStore).todos);
   }
 
-  updateList(index: any, checked: any) {
+  updateList(index: number, checked: boolean) {
     let completedTask = this.dataStore.todos.splice(index, 1)[0];
     completedTask.completed = checked;
-    if (!!completedTask.completed) {
+    if (completedTask.completed) {
       this.dataStore.todos.push(completedTask);
     } else {
       this.dataStore.todos.unshift(completedTask);
