@@ -13,7 +13,6 @@ export class LoginInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     const token = localStorage.getItem('jwtToken');
-
     if (token) {
       request = request.clone({
         setHeaders: {
@@ -21,7 +20,6 @@ export class LoginInterceptor implements HttpInterceptor {
         }
       });
     }
-
     return next.handle(request);
   }
 }

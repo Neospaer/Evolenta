@@ -1,11 +1,25 @@
-.register-container {
-    margin-top: 64px; /* Отступ сверху, если есть toolbar */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: calc(100vh - 64px);
-  }
-  
-  .register-card {
-    width: 400px;
-  }
+.container {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 1rem;
+  text-align: center;
+}
+
+.header {
+  font-size: 24px;
+  margin-bottom: 1rem;
+}
+
+mat-form-field {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.custom-input .mat-form-field-wrapper {
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+button {
+  width: 100%;
+}

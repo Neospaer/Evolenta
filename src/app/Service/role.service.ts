@@ -13,7 +13,6 @@ export class RoleService {
 
   constructor(private readonly http: HttpClient) {
     const token = localStorage.getItem('jwtToken');
-    this._isLoggedIn$.next(!!token);
   }
 
   public login(username: string, password: string) {
@@ -25,7 +24,7 @@ export class RoleService {
           response.id,
           response.role,
           response.firstName,
-          response.lastEntry,
+          response.lastName,
           response.middleName,
           response.username,
           response.avatar

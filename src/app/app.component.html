@@ -9,8 +9,8 @@
   </div>
   <div *ngIf="(isLoggedIn$ | async)" class="user-info">
     <img [src]="user?.avatar" alt="{{ user?.firstName }}" class="avatar">
-    <span>{{ user?.firstName }}</span>
-    <span>{{ user?.role }}</span>
+    <span>{{ user?.lastName}} {{ user?.firstName}}</span>
+    <span>{{ user?.role === 'admin' ? 'Администратор' : 'Пользователь' }}</span>
     <button mat-icon-button [matMenuTriggerFor]="menu">
       <mat-icon>more_vert</mat-icon>
     </button>
