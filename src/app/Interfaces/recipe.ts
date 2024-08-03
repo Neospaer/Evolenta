@@ -22,23 +22,26 @@ export interface FoodValue {
     proteins: number;
   }
   
-  export interface Step {
-    title: string;
-    description: string;
-  }
+export interface Step {
+  title: string;
+  description: string;
+}
   
-  export interface Ingredient {
-    title: string;
-    description: string;
-  }
+export interface Ingredient {
+  title: string;
+  description: string;
+} 
   
-  export interface Recipe {
-    body: string;
-    title: string;
-    tags: string[];
-    image: string;
-    timeCooking: number;
-    foodValue: FoodValue;
-    cookingSteps: Step[];
-    ingredients: Ingredient[];
-  }
+export interface AddRecipe {
+  body: string;
+  title: string;
+  tags: string[];
+  image: string;
+  timeCooking: number;
+  foodValue: FoodValue;
+  cookingSteps: Step[];
+  ingredients: Ingredient[];
+}
+export interface Commit{
+  text: string
+}

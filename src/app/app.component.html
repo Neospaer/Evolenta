@@ -1,23 +1,23 @@
 <mat-toolbar color="primary" class="toolbar">
   <span>Foodie</span>
-  <nav class="center-block">
+  <nav>
     <a mat-button routerLink="/">Главная</a>
     <a mat-button routerLink="/recipes">Каталог рецептов</a>
   </nav>
-  <div *ngIf="!isAuthenticated" class="auth-buttons">
+  <div *ngIf="(isLoggedIn$ | async)" class="auth-buttons">
     <button mat-raised-button color="primary" routerLink="/authorization">Вход в аккаунт</button>
   </div>
-  <div *ngIf="isAuthenticated" class="user-info">
-    <img [src]="user.avatarUrl" alt="{{ user.name }}" class="avatar">
-    <span>{{ user.name }}</span>
-    <span>{{ user.role }}</span>
+  <div *ngIf="!(isLoggedIn$ | async)" class="user-info">
+    <img [src]="user?.avatar" alt="{{ user?.firstName }}" class="avatar">
+    <span>{{ user?.firstName }}</span>
+    <span>{{ user?.role }}</span>
     <button mat-icon-button [matMenuTriggerFor]="menu">
       <mat-icon>more_vert</mat-icon>
     </button>
     <mat-menu #menu="matMenu">
       <button mat-menu-item (click)="goToSettings()">Настройки аккаунта</button>
-      <button mat-menu-item *ngIf="user.role === 'Администратор'" (click)="goToAdmin()">Администрирование</button>
-      <button mat-menu-item>Выход</button>
+      <button mat-menu-item *ngIf="user?.role === 'admin'" (click)="goToAdmin()">Администрирование</button>
+      <button mat-menu-item (click)="logout()">Выход</button>
     </mat-menu>
   </div>
 </mat-toolbar>

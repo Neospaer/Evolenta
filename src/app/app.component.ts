@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { RoleService } from './Service/role.service';
-import { User } from './Interfaces/User';
+import { Auth, Role, User } from './Interfaces/User';
 import { DataService } from './Service/data.service';
 import { Router } from '@angular/router';
+import { first, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -11,23 +12,44 @@ import { Router } from '@angular/router';
 })
 export class AppComponent implements OnInit{
 
-  isAuthenticated = false;
-  user: any = {};
+  public isLoggedIn$!: Observable<boolean>;
+  public user: Auth | null = null;
+  public isMenuToggled = false;
 
-  constructor(private dataService: DataService, private router: Router) {}
+  constructor(public roleService: RoleService,private router: Router) {}
 
-  ngOnInit() {
-    this.dataService.user$.subscribe(user => {
-      this.isAuthenticated = !!user;
-      this.user = user || {};
+  public ngOnInit() {
+    this.isLoggedIn$ = this.roleService.isLoggedIn$;
+    this.isLoggedIn$.subscribe((isLoggedIn) => {
+      if (isLoggedIn) {
+        const id = localStorage.getItem('id') ?? '';
+        const role = localStorage.getItem('role') as Role;
+        const firstName = localStorage.getItem('firstName');
+        const lastName = localStorage.getItem('lastname');
+        const middleName = localStorage.getItem('middleName') ?? '';
+        const username = localStorage.getItem('username') ?? '';
+        const avatar = localStorage.getItem('avatar') ?? '';
+        if (firstName && lastName) {
+          this.user = new Auth(id, role, firstName, lastName, middleName, username,avatar);
+        } else {
+          this.user = this.roleService.currentUser;
+        }
+      }
     });
   }
-
-  goToSettings() {
+  goToSettings(){
+    this.router.navigate(['**'])
   }
 
   goToAdmin() {
-    this.router.navigate(['/admin']);
+      this.router.navigate(['/admin']);
   }
-  
+
+  logout(){
+    this.roleService.logout()
+  }
+
+  toggleMenu() {
+    this.isMenuToggled = !this.isMenuToggled;
+  }
 }

@@ -1,9 +1,9 @@
 .toolbar {
   justify-content: space-between;
 }
-.center-block{
-  margin-right: auto;
-  margin-left: auto;
+
+.spacer {
+  flex: 1 1 auto;
 }
 
 .auth-buttons,

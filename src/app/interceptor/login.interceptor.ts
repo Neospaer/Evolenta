@@ -6,22 +6,22 @@ import {
   HttpInterceptor
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { DataService } from '../Service/data.service';
+import { RoleService } from '../Service/role.service';
 
 @Injectable()
 export class LoginInterceptor implements HttpInterceptor {
 
-  constructor(private dataService: DataService) {}
+  constructor(private roleService: RoleService) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    const token = request;
+    const token = localStorage.getItem('jwtToken');
     if (token) {
-      const cloned = request.clone({
-        headers: request.headers.set('Authorization', `Bearer ${token}`)
-      });
-      return next.handle(cloned);
-    } else {
-      return next.handle(request);
-    }
+        request = request.clone({
+          setHeaders: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+      }
+    return next.handle(request);
   }
 }
