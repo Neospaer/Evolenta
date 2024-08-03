@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Auth, RegUser, User } from '../Interfaces/User';
 import { BehaviorSubject, tap} from 'rxjs';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -11,8 +12,7 @@ export class RoleService {
   public isLoggedIn$ = this._isLoggedIn$.asObservable();
   public currentUser: Auth | null = null;
 
-  constructor(private readonly http: HttpClient) {
-    const token = localStorage.getItem('jwtToken');
+  constructor(private readonly http: HttpClient, private router: Router) {
   }
 
   public login(username: string, password: string) {
@@ -55,7 +55,7 @@ export class RoleService {
   
     this._isLoggedIn$.next(false)
     this.currentUser = null;
-    window.location.reload();
+    this.router.navigate(['/'])
   }
 
   public register(user: RegUser) {

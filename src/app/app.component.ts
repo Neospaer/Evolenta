@@ -27,11 +27,7 @@ export class AppComponent implements OnInit{
   }
 
   public goToSettings() {
-    this.router.navigate(['/settings']);
-  }
-
-  public goToAdmin() {
-    this.router.navigate(['/admin']);
+    this.router.navigate(['/']);
   }
 
   public logout() {

@@ -1,3 +1,17 @@
-<p>
-  admin-users works!
-</p>
+<div class="container">
+  <div class="user-list">
+    <h2>Список пользователей</h2>
+    <ul>
+      <li *ngFor="let user of users">
+        <img [src]="user.avatar" alt="{{ user.username }}" class="avatar">
+        <p><strong>Имя:</strong> {{ user.firstName }} {{ user.middleName }} {{ user.lastName }}</p>
+        <p><strong>Имя пользователя:</strong> {{ user.username }}</p>
+        <p><strong>Роль:</strong> {{ user.role }}</p>
+        <p><strong>Статус:</strong> {{ user.isActive ? 'Активен' : 'Неактивен' }}</p>
+      </li>
+    </ul>
+  </div>
+
+  <button type="button" class="btn btn-outline-primary" (click)="getUsers()">Получить пользователей</button>
+  
+  <router-outlet></router-outlet>

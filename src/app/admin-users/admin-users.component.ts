@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from '../Service/data.service';
+import { User } from '../Interfaces/User';
+import { Notify } from 'notiflix';
 
 @Component({
   selector: 'app-admin-users',
@@ -7,9 +10,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminUsersComponent implements OnInit {
 
-  constructor() { }
-
+  constructor(private dataService: DataService) { }
+  users: User[] = []
   ngOnInit() {
   }
-
+  
+  getUsers() {
+    this.dataService.getUsers().subscribe({
+      next: (response) => {
+        this.users = response;
+        Notify.success('Successfully requested users');
+      }
+    });
+  }
 }

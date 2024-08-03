@@ -1,64 +1,36 @@
-<!-- <div class="register_main">
-  <div class="header">Войдите в ваш аккаунт</div>
-  <div class="form">
-    <form (ngSubmit)="submitForm()" [formGroup]="loginForm" autocomplete="off">
-      <div class="form_content">
-        <div class="form_row">
-          <label class="label">Логин</label>
-          <input
-            class="input"
-            formControlName="username"
-            [ngClass]="{ 'has-error': loginForm.get('username')?.invalid }"
-          />
-        </div>
-        <div class="form_row">
-          <label class="label">Пароль</label>
-          <input
-            type="password"
-            class="input"
-            formControlName="password"
-            [ngClass]="{ 'has-error': loginForm.get('password')?.invalid }"
-          />
-        </div>
-        <div class="form_row">
-          <div class="settings">
-            <div class="check">
-              <input type="checkbox" class="input" />
-              <label class="label">Запомнить меня</label>
-            </div>
-            <a class="link" routerLink="/register">Зарегистрироваться</a>
-          </div>
-        </div>
+<div class="container">
+  <h1 class="header">Войти в аккаунт</h1>
+  <form [formGroup]="authorizationForm" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="fill" class="custom-input">
+      <mat-label>Логин</mat-label>
+      <input matInput formControlName="username" required>
+      <mat-error *ngIf="f['username'].invalid && (f['username'].dirty || f['username'].touched)">
+        Логин обязателен
+      </mat-error>
+    </mat-form-field>
 
-        <button
-          class="btn primary"
-          [ngClass]="{ disabled_button: isSubmitted && loginForm.invalid }"
-          [disabled]="isSubmitted && loginForm.invalid"
-        >
-          Вход
-        </button>
-      </div>
-    </form>
-    <div class="divider">
-      <hr />
-      <p>Или войти через</p>
-      <hr />
+    <mat-form-field appearance="fill" class="custom-input">
+      <mat-label>Пароль</mat-label>
+      <input matInput formControlName="password" type="password" required>
+      <mat-error *ngIf="f['password'].invalid && (f['password'].dirty || f['password'].touched)">
+        <span *ngIf="f['password'].errors?.['required']">Пароль обязателен</span>
+        <span *ngIf="f['password'].errors?.['minlength']">Пароль должен быть больше 4 символов</span>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-checkbox formControlName="quickSession">Быстрая сессия</mat-checkbox>
+
+    <button mat-raised-button color="primary" type="submit" [disabled]="authorizationForm.invalid">Войти</button>
+    
+    <div class="register-link">
+      <a routerLink="/registration">Зарегистрироваться</a>
     </div>
-    <button class="btn auth_github">
-    </button>
-  </div>
-</div> -->
-<div>
-  <h2>Вход в аккаунт</h2>
-  <form (submit)="login()">
-    <label>
-      Имя пользователя:
-      <input type="text" [(ngModel)]="username" name="username" required>
-    </label>
-    <label>
-      Пароль:
-      <input type="password" [(ngModel)]="password" name="password" required>
-    </label>
-    <button type="submit">Войти</button>
+
+    <div class="social-login">
+      <button mat-raised-button color="primary" class="social-button">
+        <img src="assets/Image/free-icon-github-2111425.png" alt="GitHub" class="social-icon">
+        Войти через GitHub
+      </button>
+    </div>
   </form>
 </div>

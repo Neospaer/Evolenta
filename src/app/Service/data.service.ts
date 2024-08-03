@@ -15,7 +15,7 @@ export class DataService {
   constructor(private router: Router,private http: HttpClient) { }
 
   public getUsers() {
-    return this.http.get<User[]>('users');
+    return this.http.get<User[]>(`https://evo-academy.wckz.dev/api/cooking-blog/users`);
   }
 
   public getUser(id: number) {

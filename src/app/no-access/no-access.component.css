@@ -1,0 +1,50 @@
+:host {
+  display: contents;
+}
+
+.access-denied {
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.split-content {
+  background-color: #fff;
+  width: 100%;
+  padding-left: 32px;
+  display: flex;
+  gap: 20px;
+}
+
+.content-column {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+
+.content-wrapper {    gap: 0;
+  padding-left: 20px;
+}
+
+.content-column,
+.image-column {
+  width: 100%;
+}
+
+.content-wrapper {
+  margin-top: 40px;
+}
+
+.header-content {
+  padding: 100px 20px;
+}
+
+.main-heading {
+  font-size: 40px;
+}
+
+.error-image {
+  max-width: 100%;
+}
+

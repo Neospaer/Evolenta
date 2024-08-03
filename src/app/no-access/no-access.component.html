@@ -1,0 +1,20 @@
+<main class="access-denied">
+  <section class="split-content">
+    <div class="content-column">
+      <div class="content-wrapper">
+        <header class="header-content">
+          <p class="error-code">401 ОШИБКА</p>
+          <h1 class="main-heading">Доступ запрещен</h1>
+          <p class="error-description">У вас нет прав на просмотр этого раздела</p>
+        </header>
+        <nav class="navigation-links">
+          <a (click)="goBack()" class="nav-link">Назад →</a>
+          <a routerLink="/" class="nav-link">На главную →</a>
+        </nav>
+      </div>
+    </div>
+    <div class="image-column">
+      <img src="assets/Image/image_404.png" alt="Иллюстрация ошибки доступа" class="error-image">
+    </div>
+  </section>
+</main>

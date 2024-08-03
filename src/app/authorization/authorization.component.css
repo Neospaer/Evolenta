@@ -1,16 +1,46 @@
+.container {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 1rem;
+  text-align: center;
+}
 
-.login-container {
-    margin-top: 64px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: calc(100vh - 64px);
-  }
-  
-  .login-card {
-    width: 400px;
-  }
-  
-  .mat-toolbar {
-    height: 64px;
-  }
+.header {
+  font-size: 24px;
+  margin-bottom: 1rem;
+}
+
+mat-form-field {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.custom-input .mat-form-field-wrapper {
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+button {
+  width: 100%;
+}
+
+.register-link {
+  margin-top: 1rem;
+}
+
+.social-login {
+  margin-top: 1rem;
+}
+
+.social-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.social-icon {
+  margin-right: 8px;
+  height: 24px;
+  width: 24px;
+}

@@ -22,7 +22,6 @@ import { CreateRecipeComponent } from './create-recipe/create-recipe.component';
 import { AdminUsersComponent } from './admin-users/admin-users.component';
 import { AdminRecipesComponent } from './admin-recipes/admin-recipes.component';
 import { AdminerGuard } from './Guards/adminer.guard';
-import { RegisterGuard } from './Guards/register.guard';
 import { RoleService } from './Service/role.service';
 import { DataService } from './Service/data.service';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
@@ -31,9 +30,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginInterceptor } from './Interceptor/login.interceptor';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { MatMenuModule } from '@angular/material/menu';
+import { NoAccessComponent } from './no-access/no-access.component';
 
 @NgModule({
-  declarations: [							
+  declarations: [									
     AppComponent,
       ErrorComponent,
       AuthorizationComponent,
@@ -42,7 +42,8 @@ import { MatMenuModule } from '@angular/material/menu';
       CreateRecipeComponent,
       AdminUsersComponent,
       AdminRecipesComponent,
-      HomeComponent
+      HomeComponent,
+      NoAccessComponent
    ],
   imports: [
     BrowserModule,
@@ -65,7 +66,7 @@ import { MatMenuModule } from '@angular/material/menu';
     ReactiveFormsModule,
     MatMenuModule
   ],
-  providers: [AdminerGuard,RegisterGuard,RoleService,DataService,{provide: HTTP_INTERCEPTORS,useClass: LoginInterceptor,multi: true}],
+  providers: [AdminerGuard,RoleService,DataService,{provide: HTTP_INTERCEPTORS,useClass: LoginInterceptor,multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
