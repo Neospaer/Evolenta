@@ -1,4 +1,4 @@
-<div class="register_main">
+<!-- <div class="register_main">
   <div class="header">Войдите в ваш аккаунт</div>
   <div class="form">
     <form (ngSubmit)="submitForm()" [formGroup]="loginForm" autocomplete="off">
@@ -47,4 +47,18 @@
     <button class="btn auth_github">
     </button>
   </div>
+</div> -->
+<div>
+  <h2>Вход в аккаунт</h2>
+  <form (submit)="login()">
+    <label>
+      Имя пользователя:
+      <input type="text" [(ngModel)]="username" name="username" required>
+    </label>
+    <label>
+      Пароль:
+      <input type="password" [(ngModel)]="password" name="password" required>
+    </label>
+    <button type="submit">Войти</button>
+  </form>
 </div>

@@ -11,17 +11,17 @@ import { RoleService } from '../Service/role.service';
 @Injectable()
 export class LoginInterceptor implements HttpInterceptor {
 
-  constructor(private roleService: RoleService) {}
-
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     const token = localStorage.getItem('jwtToken');
+
     if (token) {
-        request = request.clone({
-          setHeaders: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-      }
+      request = request.clone({
+        setHeaders: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+    }
+
     return next.handle(request);
   }
 }

@@ -31,7 +31,7 @@ export class RoleService {
           response.avatar
         )
 
-        this._isLoggedIn$.next(false);
+        this._isLoggedIn$.next(true);
 
         localStorage.setItem('id', this.currentUser.id);
         localStorage.setItem('role', this.currentUser.role);
@@ -54,7 +54,7 @@ export class RoleService {
     localStorage.removeItem('jwtToken');
     localStorage.removeItem('avatar');
   
-    this._isLoggedIn$.next(true)
+    this._isLoggedIn$.next(false)
     this.currentUser = null;
     window.location.reload();
   }

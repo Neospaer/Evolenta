@@ -4,10 +4,10 @@
     <a mat-button routerLink="/">Главная</a>
     <a mat-button routerLink="/recipes">Каталог рецептов</a>
   </nav>
-  <div *ngIf="(isLoggedIn$ | async)" class="auth-buttons">
+  <div *ngIf="!(isLoggedIn$ | async)" class="auth-buttons">
     <button mat-raised-button color="primary" routerLink="/authorization">Вход в аккаунт</button>
   </div>
-  <div *ngIf="!(isLoggedIn$ | async)" class="user-info">
+  <div *ngIf="(isLoggedIn$ | async)" class="user-info">
     <img [src]="user?.avatar" alt="{{ user?.firstName }}" class="avatar">
     <span>{{ user?.firstName }}</span>
     <span>{{ user?.role }}</span>

@@ -12,25 +12,13 @@ import { RoleService } from '../Service/role.service';
 })
 export class AuthorizationComponent{
   
-  public isSubmitted = false;
-  public loginForm = new FormGroup({
-    username: new FormControl('', Validators.required),
-    password: new FormControl('', Validators.required),
-  });
-  constructor(
-    private readonly router: Router,
-    private readonly roleService: RoleService
-  ) {}
+  public username: string = '';
+  public password: string = '';
 
-  public submitForm() {
-    if (this.loginForm.invalid) {
-      this.isSubmitted = true;
-      return;
-    }
-    const username = this.loginForm.controls.username.value!;
-    const password = this.loginForm.controls.password.value!;
+  constructor(private roleService: RoleService, private router: Router) {}
 
-    this.roleService.login(username, password).subscribe((response) => {
+  public login() {
+    this.roleService.login(this.username, this.password).subscribe(() => {
       this.router.navigate(['/']);
     });
   }
