@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Recipe } from '../Interfaces/recipe';
+import { CreateRecipe, Recipe } from '../Interfaces/recipe';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Auth, User } from '../Interfaces/User';
 
@@ -35,8 +35,8 @@ export class DataService {
     return this.http.patch<Recipe>(`https://evo-academy.wckz.dev/api/cooking-blog/posts/${id}`, data);
   }
 
-  public createRecipe(recipe: Recipe) {
-    return this.http.post<Recipe>('https://evo-academy.wckz.dev/api/cooking-blog/posts', recipe);
+  public createRecipe(recipe: CreateRecipe) {
+    return this.http.post<CreateRecipe>('https://evo-academy.wckz.dev/api/cooking-blog/posts', recipe);
   }
 
   public deleteRecipe(id: number) {

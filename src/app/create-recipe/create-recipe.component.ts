@@ -13,7 +13,7 @@ export class CreateRecipeComponent implements OnInit {
 
   createRecipeForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private http: HttpClient) {
+  constructor(private fb: FormBuilder, private http: HttpClient, private dataService: DataService) {
     this.createRecipeForm = this.fb.group({
       title: ['', Validators.required],
       body: ['', Validators.required],
@@ -64,8 +64,8 @@ export class CreateRecipeComponent implements OnInit {
   }
 
   onSubmit(): void {
-    if (this.createRecipeForm.valid) {
-      this.http.post('https://evo-academy.wckz.dev/api/cooking-blog/posts/create', this.createRecipeForm.value)
+    // if (this.createRecipeForm.valid) {
+      this.dataService.createRecipe(this.createRecipeForm.value)
         .subscribe(
           response => {
             Notiflix.Notify.success('Рецепт успешно создан');
@@ -75,8 +75,8 @@ export class CreateRecipeComponent implements OnInit {
             Notiflix.Notify.failure('Ошибка при создании рецепта');
           }
         );
-    } else {
-      Notiflix.Notify.warning('Пожалуйста, заполните все обязательные поля');
-    }
+    // } else {
+    //   Notiflix.Notify.warning('Пожалуйста, заполните все обязательные поля');
+    // }
   }
 }

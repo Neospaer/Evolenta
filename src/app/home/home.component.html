@@ -37,3 +37,42 @@
   </div>
   <button mat-raised-button color="primary" (click)="loadMoreRecipes()">Посмотреть еще</button>
 </div>
+<section class="why-us-container">
+  <h2 class="why-us-header">Почему именно мы?</h2>
+  <div class="features-grid">
+    <article class="feature-item" *ngFor="let feature of features">
+      <div class="feature-content">
+        <img src="assets\Image\free-icon-approve-sign-8373208.png" alt="check" class="feature-icon" />
+        <div class="feature-text">
+          <h3 class="feature-title">{{ feature.title }}</h3>
+          <p class="feature-description">{{ feature.description }}</p>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section class="newsletter-section">
+  <div class="newsletter-container">
+    <div class="newsletter-card">
+      <div class="newsletter-content">
+        <h2 class="newsletter-heading">Хотите получать новые рецепты?</h2>
+        <p class="newsletter-text">
+          Не пропустите ни одного вкусного рецепта! Подпишитесь на нашу рассылку, чтобы получать новые кулинарные идеи и рецепты прямо в свою почту.
+        </p>
+      </div>
+      <form class="newsletter-form">
+        <label for="emailInput" class="visually-hidden">Введите ваш email</label>
+        <input
+          required
+          #email="ngModel"
+          name="email"
+          [(ngModel)]="create_email"  
+          class="newsletter-input"
+          placeholder="Введите ваш email..."
+        />
+        <button type="submit" class="newsletter-button" (click)="onSubmit()" [disabled]="email.invalid">Подписаться</button>
+      </form>
+    </div>
+  </div>
+</section>

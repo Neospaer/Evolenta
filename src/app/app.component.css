@@ -1,51 +1,74 @@
-.toolbar {
+.auth-container {
+  flex: 1;
   display: flex;
+  justify-content: center;
   align-items: center;
-  position: relative;
-  justify-content: space-between;
 }
 
-.nav-wrapper {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
+.auth-content {
+  max-width: 400px;
+  padding: 1rem;
+  text-align: center;
+}
+
+.mat-form-field {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.custom-input .mat-form-field-wrapper {
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+button {
+  width: 100%;
+}
+
+.register-link {
+  margin-top: 1rem;
+}
+
+.social-login {
+  margin-top: 1rem;
+}
+
+.social-button {
   display: flex;
+  align-items: center;
   justify-content: center;
   width: 100%;
 }
 
-.nav-links {
-  display: flex;
-  gap: 16px;
-}
-
-.auth-buttons,
-.user-info {
-  display: flex;
-  align-items: center;
-}
-
-.avatar {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
+.social-icon {
   margin-right: 8px;
+  height: 24px;
+  width: 24px;
 }
-.social-links {
+
+footer {
   display: flex;
-  justify-content: center;
-  align-items: flex-start;
+  justify-content: flex-start;
+  align-items: center;
   background-color: var(--white, #fff);
+  padding: 16px;
+  width: 100%;
+  height: 110px;
+}
+
+.footer-divider {
+  height: 1px;
+  background-color: #e9ecef;
+  width: 100%;
 }
 
 .container {
   display: flex;
-  width: 1280px;
-  min-width: 240px;
   justify-content: space-between;
-  align-items: flex-start;
-  flex-wrap: wrap;
-  gap: 20px 100px;padding: 48px 32px;
+  align-items: center;
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
 }
 
 .copyright {
@@ -63,7 +86,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 24px;height: 24px;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
 }
 
 .social-icon {
@@ -83,8 +108,93 @@
   white-space: nowrap;
   border: 0;
 }
+
 @media (max-width: 991px) {
   .container {
     padding: 0 20px;
   }
+}
+
+.name {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.toolbar span,
+.toolbar a {
+  color: #000000;
+}
+
+.toolbar {
+  width: 1440px;
+  height: 110px;
+  display: flex;
+  justify-content: space-between;
+  background-color: #ffffff;
+  margin: 0 auto;
+}
+
+.auth-buttons, .user-info {
+  align-items: center;
+}
+
+.avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+}
+
+.user-details {
+  margin-left: 10px;
+}
+
+.user-name {
+  display: block;
+  font-weight: bold;
+}
+
+.user-role {
+  display: block;
+  font-size: 0.9em;
+  color: gray;
+}
+
+.mat-toolbar.mat-primary {
+  background: rgba(255, 255, 255, 0);
+  color: #000000;
+}
+
+.mat-icon {
+  font-size: 24px;
+}
+
+.image-button {
+  margin-right: 15px;
+}
+
+.button-image {
+  width: 24px; 
+  height: 24px;
+  object-fit: contain; 
+}
+
+.center-block {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+}
+
+.center-block a {
+  font-size: 18px;
+  color: black;
 }

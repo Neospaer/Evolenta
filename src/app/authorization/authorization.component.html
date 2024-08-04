@@ -1,36 +1,38 @@
-<div class="container">
-  <h1 class="header">Войти в аккаунт</h1>
-  <form [formGroup]="authorizationForm" (ngSubmit)="onSubmit()">
-    <mat-form-field appearance="fill" class="custom-input">
-      <mat-label>Логин</mat-label>
-      <input matInput formControlName="username" required>
-      <mat-error *ngIf="f['username'].invalid && (f['username'].dirty || f['username'].touched)">
-        Логин обязателен
-      </mat-error>
-    </mat-form-field>
+<div class="auth-container">
+  <div class="auth-content">
+    <h1 class="header">Войти в ваш аккаунт</h1>
+    <form [formGroup]="authorizationForm" (ngSubmit)="onSubmit()">
+      <mat-form-field appearance="fill" class="custom-input">
+        <mat-label>Логин</mat-label>
+        <input matInput formControlName="username" required>
+        <mat-error *ngIf="f['username'].invalid && (f['username'].dirty || f['username'].touched)">
+          Логин обязателен
+        </mat-error>
+      </mat-form-field>
 
-    <mat-form-field appearance="fill" class="custom-input">
-      <mat-label>Пароль</mat-label>
-      <input matInput formControlName="password" type="password" required>
-      <mat-error *ngIf="f['password'].invalid && (f['password'].dirty || f['password'].touched)">
-        <span *ngIf="f['password'].errors?.['required']">Пароль обязателен</span>
-        <span *ngIf="f['password'].errors?.['minlength']">Пароль должен быть больше 4 символов</span>
-      </mat-error>
-    </mat-form-field>
+      <mat-form-field appearance="fill" class="custom-input">
+        <mat-label>Пароль</mat-label>
+        <input matInput formControlName="password" type="password" required>
+        <mat-error *ngIf="f['password'].invalid && (f['password'].dirty || f['password'].touched)">
+          <span *ngIf="f['password'].errors?.['required']">Пароль обязателен</span>
+          <span *ngIf="f['password'].errors?.['minlength']">Пароль должен быть больше 4 символов</span>
+        </mat-error>
+      </mat-form-field>
 
-    <mat-checkbox formControlName="quickSession">Быстрая сессия</mat-checkbox>
+      <mat-checkbox formControlName="quickSession">Быстрая сессия</mat-checkbox>
 
-    <button mat-raised-button color="primary" type="submit" [disabled]="authorizationForm.invalid">Войти</button>
-    
-    <div class="register-link">
-      <a routerLink="/registration">Зарегистрироваться</a>
-    </div>
+      <button mat-raised-button color="primary" type="submit" [disabled]="authorizationForm.invalid">Войти</button>
+      
+      <div class="register-link">
+        <a routerLink="/registration">Зарегистрироваться</a>
+      </div>
 
-    <div class="social-login">
-      <button mat-raised-button color="primary" class="social-button">
-        <img src="assets/Image/free-icon-github-2111425.png" alt="GitHub" class="social-icon">
-        Войти через GitHub
-      </button>
-    </div>
-  </form>
+      <div class="social-login">
+        <button mat-raised-button color="primary" class="social-button">
+          <img src="assets/Image/free-icon-github-2111425.png" alt="GitHub" class="social-icon">
+          Войти через GitHub
+        </button>
+      </div>
+    </form>
+  </div>
 </div>

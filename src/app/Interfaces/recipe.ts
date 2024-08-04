@@ -15,6 +15,17 @@ export interface Recipe {
     createdOn: Date,
     updatedOn: Date
 }
+
+export interface CreateRecipe{
+  body: string,
+  title: string,
+  tags: string[],
+  timeCooking: number,
+  foodValue: FoodValue,
+  cookingStep: Step,
+  ingredient: Ingredient
+}
+
 export interface FoodValue {
     calories: number;
     fats: number;

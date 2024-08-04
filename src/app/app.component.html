@@ -1,38 +1,51 @@
 <mat-toolbar color="primary" class="toolbar">
-  <span>Foodie</span>
-  <div class="nav-wrapper">
-    <nav class="nav-links">
-      <a mat-button routerLink="/">Главная</a>
-      <a mat-button routerLink="/recipes">Каталог рецептов</a>
-    </nav>
-  </div>
+  <span class="name">Foodie</span>
+  <nav class="center-block">
+    <a mat-button routerLink="/">Главная</a>
+    <a mat-button routerLink="/recipes">Каталог рецептов</a>
+  </nav>
   <div *ngIf="!(isLoggedIn$ | async)" class="auth-buttons">
     <button mat-raised-button color="primary" routerLink="/authorization">Вход в аккаунт</button>
   </div>
-  <div *ngIf="(isLoggedIn$ | async)" class="user-info">
+  <div class="user-info" *ngIf="(isLoggedIn$ | async)">
+    <button mat-icon-button class="image-button" routerLink="/create-recipe">
+      <img src="assets/Image/image.png" alt="Description" class="button-image">
+    </button>
+
     <img [src]="user?.avatar" alt="{{ user?.firstName }}" class="avatar">
-    <span>{{ user?.lastName}} {{ user?.firstName}}</span>
-    <span>{{ user?.role === 'admin' ? 'Администратор' : 'Пользователь' }}</span>
+    <div class="user-details">
+      <span class="user-name">{{ user?.lastName }} {{ user?.firstName }}</span>
+      <span class="user-role">{{ user?.role === 'admin' ? 'Администратор' : 'Пользователь' }}</span>
+    </div>
+
     <button mat-icon-button [matMenuTriggerFor]="menu">
       <mat-icon>more_vert</mat-icon>
     </button>
     <mat-menu #menu="matMenu">
+      <button mat-menu-item>
+        <span class="menu-username">
+          Вы вошли как:<br>
+          <strong>{{ user?.username }}</strong>
+        </span>
+      </button>
       <button mat-menu-item (click)="goToSettings()">Настройки аккаунта</button>
-      <button mat-menu-item routerLink="/admin/users">Администрирование</button>
+      <button mat-menu-item *ngIf="user?.role === 'admin'" routerLink="/admin/users">Администрирование</button>
       <button mat-menu-item (click)="logout()">Выход</button>
     </mat-menu>
   </div>
-</mat-toolbar>
+</mat-toolbar> 
+<div class="footer-divider"></div>
 <router-outlet></router-outlet>
+<div class="footer-divider"></div>
 <footer class="social-links">
   <div class="container">
     <p class="copyright">© 2023 Foodie, Все права защищены.</p>
     <nav class="social-nav">
-      <a class="social-link" aria-label="Instagram">
-        <img src="assets/Image/free-icon-github-2111425.png" alt="" class="social-icon" />
+      <a class="social-link" aria-label="GitHub">
+        <img src="assets/Image/free-icon-github-2111425.png" alt="GitHub" class="social-icon" />
       </a>
-      <a class="social-link" aria-label="Twitter">
-        <img src="assets\Image\dribbble.png" alt="" class="social-icon" />
+      <a class="social-link" aria-label="Dribbble">
+        <img src="assets/Image/dribbble.png" alt="Dribbble" class="social-icon" />
       </a>
     </nav>
   </div>
