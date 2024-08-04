@@ -17,7 +17,7 @@ constructor(private http: HttpClient) { }
     return this.http.get('https://jsonplaceholder.typicode.com/comments',{params: {'postId':1}})
   }
   PostUser(){
-    return this.http.post('https://jsonplaceholder.typicode.com/posts',{body: {}})
+    return this.http.post('https://jsonplaceholder.typicode.com/posts',{})
   }
   getErrorUser(){
     return this.http.get('https://jsonplaceholder.typicode.com/post')
