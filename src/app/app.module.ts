@@ -31,9 +31,12 @@ import { LoginInterceptor } from './Interceptor/login.interceptor';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { MatMenuModule } from '@angular/material/menu';
 import { NoAccessComponent } from './no-access/no-access.component';
+import { AdminHeaderComponent } from './admin-header/admin-header.component';
+import { RecipeComponent } from './recipe/recipe.component';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
-  declarations: [									
+  declarations: [											
     AppComponent,
       ErrorComponent,
       AuthorizationComponent,
@@ -43,7 +46,9 @@ import { NoAccessComponent } from './no-access/no-access.component';
       AdminUsersComponent,
       AdminRecipesComponent,
       HomeComponent,
-      NoAccessComponent
+      NoAccessComponent,
+      AdminHeaderComponent,
+      RecipeComponent
    ],
   imports: [
     BrowserModule,
@@ -64,7 +69,8 @@ import { NoAccessComponent } from './no-access/no-access.component';
     FormsModule,
     CarouselModule.forRoot(),
     ReactiveFormsModule,
-    MatMenuModule
+    MatMenuModule,
+    CommonModule
   ],
   providers: [AdminerGuard,RoleService,DataService,{provide: HTTP_INTERCEPTORS,useClass: LoginInterceptor,multi: true}],
   bootstrap: [AppComponent]

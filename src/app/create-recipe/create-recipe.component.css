@@ -51,4 +51,15 @@
   button[type="submit"] {
     width: 100%;
   }
+  .error {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+  }
+  
+  .alert-danger {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+  }
   

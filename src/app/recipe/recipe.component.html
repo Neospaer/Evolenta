@@ -1,0 +1,54 @@
+<div class="recipe-page">
+  <h1 class="recipe-title">{{ recipe.title }}</h1>
+  <div class="author-info">
+    <img [src]="recipe.author.avatar" alt="{{ recipe.author.firstName }} {{ recipe.author.lastName }}" class="author-avatar">
+    <div class="author-details">
+      <span class="author-name">{{ recipe.author.firstName }} {{ recipe.author.lastName }}</span>
+      <div class="recipe-meta">
+        <span class="meta-item">
+          <mat-icon>schedule</mat-icon>
+          <span>{{ recipe!.timeCooking }} Минут</span>
+        </span>
+        <span class="meta-item">
+          <mat-icon>local_dining</mat-icon>
+          <span>{{ recipe.tags.join(', ') }}</span>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="recipe-main">
+    <img [src]="recipe.image" alt="{{ recipe.title }}" class="recipe-image">
+    <div class="nutrition-info">
+      <h3>Пищевая ценность</h3>
+      <div class="nutrition-details">
+        <div>Калории: {{ recipe.foodValue.calories }} ккал</div>
+        <div>Жиры: {{ recipe.foodValue.fats }} г</div>
+        <div>Углеводы: {{ recipe.foodValue.carbohydrates }} г</div>
+        <div>Белки: {{ recipe.foodValue.proteins }} г</div>
+      </div>
+    </div>
+  </div>
+
+  <p class="recipe-description">{{ recipe.body }}</p>
+
+  <div class="ingredients">
+    <h3>Ингредиенты</h3>
+    <ul>
+      <li *ngFor="let ingredient of recipe.ingredients">{{ ingredient.title }}: {{ ingredient.description }}</li>
+    </ul>
+  </div>
+
+  <div class="cooking-steps">
+    <h3>Шаги приготовления</h3>
+    <ul>
+      <li *ngFor="let step of recipe.cookingSteps">
+        <div class="step-number">{{ recipe.cookingSteps.indexOf(step) + 1 }}</div>
+        <div class="step-details">
+          <h4>{{ step.title }}</h4>
+          <p>{{ step.description }}</p>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>

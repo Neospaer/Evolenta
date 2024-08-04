@@ -1,9 +1,9 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { CreateRecipe, Recipe } from '../Interfaces/recipe';
+import { CreateRecipe, Recipe, RecipeById } from '../Interfaces/recipe';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { Auth, User } from '../Interfaces/User';
+import { Auth, User, UserById } from '../Interfaces/User';
 
 @Injectable({
   providedIn: 'root'
@@ -18,8 +18,12 @@ export class DataService {
     return this.http.get<User[]>(`https://evo-academy.wckz.dev/api/cooking-blog/users`);
   }
 
-  public getUser(id: number) {
-    return this.http.get<User>(`users/${id}`);
+  public getUser(id: string) {
+    return this.http.get<UserById>(`users/${id}`);
+  }
+  
+  public deleteUser(id: string){
+    return this.http.delete(`https://evo-academy.wckz.dev/api/cooking-blog/users/${id}`)
   }
 
   // Рецепты
@@ -27,19 +31,19 @@ export class DataService {
     return this.http.get<Recipe[]>(`https://evo-academy.wckz.dev/api/cooking-blog/posts`);
   }
 
-  public getRecipe(id: number) {
-    return this.http.get<Recipe>(`https://evo-academy.wckz.dev/api/cooking-blog/posts/${id}`);
+  public getRecipe(id: string) {
+    return this.http.get<RecipeById>(`https://evo-academy.wckz.dev/api/cooking-blog/posts/${id}`);
   }
 
-  public updateRecipe(id: number, data: Object) {
-    return this.http.patch<Recipe>(`https://evo-academy.wckz.dev/api/cooking-blog/posts/${id}`, data);
+  public updateRecipe(id: string, data: RecipeById) {
+    return this.http.patch<RecipeById>(`https://evo-academy.wckz.dev/api/cooking-blog/posts/${id}`, data);
   }
 
   public createRecipe(recipe: CreateRecipe) {
-    return this.http.post<CreateRecipe>('https://evo-academy.wckz.dev/api/cooking-blog/posts', recipe);
+    return this.http.post<CreateRecipe>('https://evo-academy.wckz.dev/api/cooking-blog/posts/create', recipe);
   }
 
-  public deleteRecipe(id: number) {
+  public deleteRecipe(id: string) {
     return this.http.delete(`https://evo-academy.wckz.dev/api/cooking-blog/posts/${id}`)
   }
 }

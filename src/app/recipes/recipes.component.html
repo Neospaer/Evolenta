@@ -1,3 +1,21 @@
-<p>
-  recipes works!
-</p>
+<div class="recipes-container">
+  <h1>Список рецептов</h1>
+  <div class="recipe-card" *ngFor="let recipe of recipes">
+    <div class="recipe-header">
+      <img [src]="recipe.image" alt="{{ recipe.title }}" class="recipe-image" [routerLink]="['/recipes/', recipe.id]" style="cursor:pointer;"/>
+      <div class="recipe-info">
+        <h2>{{ recipe.title }}</h2>
+        <div class="author-info">
+          <img [src]="recipe.author.avatar" alt="{{ recipe.author.firstName }}" class="author-avatar"/>
+          <div>
+            <p>{{ recipe.author.firstName }} {{ recipe.author.lastName }}</p>
+            <p>{{ recipe.createdOn | date: 'dd MMMM yyyy' }}</p>
+          </div>
+        </div>
+        <p class="tags">{{ recipe.tags.join(', ') }}</p>
+        <p>Время приготовления: {{ recipe.timeCooking }} минут</p>
+      </div>
+    </div>
+    <p class="recipe-body">{{ recipe.body }}</p>
+  </div>
+</div>

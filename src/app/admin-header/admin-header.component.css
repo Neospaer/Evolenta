@@ -1,0 +1,57 @@
+:host {
+    display: contents;
+  }
+  
+  .admin-panel {
+    display: flex;
+    flex-direction: column;
+    font-family: Inter, sans-serif;
+    margin-left: 80px;
+    margin-top: 50px;
+    margin-bottom: 30px;
+  }
+  
+  .admin-panel__title {
+    color: var(--gray-900, #111827);
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 1;
+    margin: 0 0 20px;
+  }
+  
+  .admin-panel__nav {
+    border-bottom: 1px solid var(--gray-200, #e5e7eb);
+  }
+  
+  .admin-panel__tabs {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .admin-panel__tab {
+    margin-right: 32px;
+  }
+  
+  .admin-panel__tab-link {
+    color: var(--gray-500, #6b7280);
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1;
+    padding: 0 4px 16px;
+    text-decoration: none;
+  }
+  
+  .admin-panel__tab--active .admin-panel__tab-link {
+    color: var(--link-color, #3a3395);
+    border-bottom: 2px solid var(--link-color, #3a3395);
+  }
+  
+  @media (max-width: 991px) {
+    .admin-panel__title,
+    .admin-panel__nav {
+      max-width: 100%;
+    }
+  }

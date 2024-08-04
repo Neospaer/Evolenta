@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from '../Service/data.service';
 import { User } from '../Interfaces/User';
 import { Notify } from 'notiflix';
+import * as Notiflix from 'notiflix';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-users',
@@ -10,17 +12,35 @@ import { Notify } from 'notiflix';
 })
 export class AdminUsersComponent implements OnInit {
 
-  constructor(private dataService: DataService) { }
-  users: User[] = []
-  ngOnInit() {
-  }
-  
-  getUsers() {
-    this.dataService.getUsers().subscribe({
-      next: (response) => {
-        this.users = response;
-        Notify.success('Successfully requested users');
-      }
+  users: User[] = [];
+
+  constructor(private dataService: DataService, private router: Router) {}
+
+  ngOnInit(): void {
+    this.dataService.getUsers().subscribe((data: User[]) => {
+      this.users = data;
     });
+  }
+
+  onViewUser(userId: string): void {
+    this.router.navigate([`/admin/users/${userId}`]);
+  }
+
+  onDeleteUser(userId: string): void {
+    Notiflix.Confirm.show(
+      'Подтверждение удаления',
+      'Вы уверены, что хотите удалить этого пользователя?',
+      'Да',
+      'Нет',
+      () => {
+        this.dataService.deleteUser(userId).subscribe(() => {
+          Notiflix.Notify.success('Пользователь удален');
+          this.users = this.users.filter(user => user.id !== userId);
+        });
+      },
+      () => {
+        Notiflix.Notify.info('Удаление отменено');
+      }
+    );
   }
 }

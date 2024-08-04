@@ -5,12 +5,18 @@
       <legend>Основная информация</legend>
       <div class="form-group">
         <label for="title">Название рецепта:</label>
-        <input id="title" formControlName="title" matInput>
+        <input id="title" formControlName="title" matInput required>
+        <div *ngIf="createRecipeForm.get('title')?.invalid && (createRecipeForm.get('title')?.dirty || createRecipeForm.get('title')?.touched)" class="alert alert-danger mt-2">
+          Поле Название рецепта не может быть пустым
+        </div>
       </div>
 
       <div class="form-group">
         <label for="body">Краткое описание:</label>
-        <textarea id="body" formControlName="body" matInput></textarea>
+        <textarea id="body" formControlName="body" matInput required></textarea>
+        <div *ngIf="createRecipeForm.get('body')?.invalid && (createRecipeForm.get('body')?.dirty || createRecipeForm.get('body')?.touched)" class="alert alert-danger mt-2">
+          Поле Краткое описание не может быть пустым
+        </div>
       </div>
     </fieldset>
 
@@ -19,33 +25,51 @@
       <div class="form-group" formArrayName="tags">
         <label>Категория:</label>
         <div *ngFor="let tag of tags.controls; let i = index">
-          <input [formControlName]="i" matInput>
+          <input [formControlName]="i" matInput required>
+          <div *ngIf="tag.invalid && (tag.dirty || tag.touched)" class="alert alert-danger mt-2">
+            Поле не может быть пустым
+          </div>
         </div>
         <button type="button" mat-raised-button color="primary" (click)="addTag()">Добавить тег</button>
       </div>
 
       <div class="form-group">
         <label for="timeCooking">Время приготовления:</label>
-        <input id="timeCooking" type="number" formControlName="timeCooking" matInput>
+        <input id="timeCooking" type="number" formControlName="timeCooking" matInput required>
+        <div *ngIf="createRecipeForm.get('timeCooking')?.invalid && (createRecipeForm.get('timeCooking')?.dirty || createRecipeForm.get('timeCooking')?.touched)" class="alert alert-danger mt-2">
+          Поле Время приготовления не может быть пустым
+        </div>
       </div>
 
       <div class="form-group" formGroupName="foodValue">
         <label>Пищевая ценность:</label>
         <div>
           <label for="calories">Калории:</label>
-          <input id="calories" type="number" formControlName="calories" matInput>
+          <input id="calories" type="number" formControlName="calories" matInput required>
+          <div *ngIf="createRecipeForm.get('foodValue.calories')?.invalid && (createRecipeForm.get('foodValue.calories')?.dirty || createRecipeForm.get('foodValue.calories')?.touched)" class="alert alert-danger mt-2">
+            Поле Калории не может быть пустым
+          </div>
         </div>
         <div>
           <label for="fats">Жиры:</label>
-          <input id="fats" type="number" formControlName="fats" matInput>
+          <input id="fats" type="number" formControlName="fats" matInput required>
+          <div *ngIf="createRecipeForm.get('foodValue.fats')?.invalid && (createRecipeForm.get('foodValue.fats')?.dirty || createRecipeForm.get('foodValue.fats')?.touched)" class="alert alert-danger mt-2">
+            Поле Жиры не может быть пустым
+          </div>
         </div>
         <div>
           <label for="carbohydrates">Углеводы:</label>
-          <input id="carbohydrates" type="number" formControlName="carbohydrates" matInput>
+          <input id="carbohydrates" type="number" formControlName="carbohydrates" matInput required>
+          <div *ngIf="createRecipeForm.get('foodValue.carbohydrates')?.invalid && (createRecipeForm.get('foodValue.carbohydrates')?.dirty || createRecipeForm.get('foodValue.carbohydrates')?.touched)" class="alert alert-danger mt-2">
+            Поле Углеводы не может быть пустым
+          </div>
         </div>
         <div>
           <label for="proteins">Белки:</label>
-          <input id="proteins" type="number" formControlName="proteins" matInput>
+          <input id="proteins" type="number" formControlName="proteins" matInput required>
+          <div *ngIf="createRecipeForm.get('foodValue.proteins')?.invalid && (createRecipeForm.get('foodValue.proteins')?.dirty || createRecipeForm.get('foodValue.proteins')?.touched)" class="alert alert-danger mt-2">
+            Поле Белки не может быть пустым
+          </div>
         </div>
       </div>
     </fieldset>
@@ -56,10 +80,16 @@
         <label>Этапы приготовления:</label>
         <div *ngFor="let step of cookingSteps.controls; let i = index" [formGroupName]="i">
           <label for="step-title-{{i}}">Краткое действие:</label>
-          <input id="step-title-{{i}}" formControlName="title" matInput>
+          <input id="step-title-{{i}}" formControlName="title" matInput required>
+          <div *ngIf="step.get('title')?.invalid && (step.get('title')?.dirty || step.get('title')?.touched)" class="alert alert-danger mt-2">
+            Поле Краткое действие не может быть пустым
+          </div>
 
           <label for="step-description-{{i}}">Описание:</label>
-          <textarea id="step-description-{{i}}" formControlName="description" matInput></textarea>
+          <textarea id="step-description-{{i}}" formControlName="description" matInput required></textarea>
+          <div *ngIf="step.get('description')?.invalid && (step.get('description')?.dirty || step.get('description')?.touched)" class="alert alert-danger mt-2">
+            Поле Описание не может быть пустым
+          </div>
         </div>
         <button type="button" mat-raised-button color="primary" (click)="addCookingStep()">Добавить этап</button>
       </div>
@@ -71,10 +101,16 @@
         <label>Ингредиенты:</label>
         <div *ngFor="let ingredient of ingredients.controls; let i = index" [formGroupName]="i">
           <label for="ingredient-title-{{i}}">Название ингредиента:</label>
-          <input id="ingredient-title-{{i}}" formControlName="title" matInput>
+          <input id="ingredient-title-{{i}}" formControlName="title" matInput required>
+          <div *ngIf="ingredient.get('title')?.invalid && (ingredient.get('title')?.dirty || ingredient.get('title')?.touched)" class="alert alert-danger mt-2">
+            Поле Название ингредиента не может быть пустым
+          </div>
 
           <label for="ingredient-description-{{i}}">Описание:</label>
-          <textarea id="ingredient-description-{{i}}" formControlName="description" matInput></textarea>
+          <textarea id="ingredient-description-{{i}}" formControlName="description" matInput required></textarea>
+          <div *ngIf="ingredient.get('description')?.invalid && (ingredient.get('description')?.dirty || ingredient.get('description')?.touched)" class="alert alert-danger mt-2">
+            Поле Описание не может быть пустым
+          </div>
         </div>
         <button type="button" mat-raised-button color="primary" (click)="addIngredient()">Добавить ингредиент</button>
       </div>

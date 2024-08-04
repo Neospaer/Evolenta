@@ -1,10 +1,10 @@
 export interface User {
     username: string,
-    role: string[],
+    role: Role,
     firstName:	string,
     lastName:	string,
     middleName:	string | '',
-    avatar:	string | '',
+    avatar:	string,
     createdOn:	Date | null,
     updatedOn:	Date | null,
     lastEntry:	Date | null,
@@ -12,6 +12,47 @@ export interface User {
     id:	string
 }
 
+export interface UserById {
+    username: string,
+    role: string,
+    firstName: string,
+    lastName: string,
+    middleName: string,
+    avatar: string,
+    userAgent: string,
+    createdOn: Date,
+    updatedOn: Date,
+    lastEntry: Date,
+    isActive: boolean,
+    id: string,
+    posts: [
+      {
+        id: string,
+        body: string,
+        title: string,
+        createdOn: Date,
+        updatedOn: Date
+      }
+    ],
+    comments: [
+      {
+        id: string,
+        postId: string,
+        text: string,
+        createdOn: Date,
+        updatedOn: Date
+      }
+    ]
+}
+
+export interface ShortUser {
+  firstName:	string,
+  lastName:	string,
+  middleName:	string | '',
+  id:	string,
+  username: string,
+  avatar:	string,
+}
 export class Auth {
   public id: string;
   public role: Role;

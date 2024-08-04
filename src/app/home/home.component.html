@@ -1,6 +1,6 @@
 <div class="carousel-container">
-  <carousel [itemsPerSlide]="1" [interval]="5000" [pauseOnFocus]="true" [showIndicators]="false">
-    <slide *ngFor="let recipe of recipes">
+  <carousel [itemsPerSlide]="1" [interval]="5000" [pauseOnFocus]="true" [showIndicators]="false" [isAnimated]="true">
+    <slide *ngFor="let recipe of firstThreeRecipes">
       <div class="slide-content">
         <div class="text-section">
           <h2>{{recipe.title}}</h2>
@@ -10,8 +10,8 @@
             <span><mat-icon>restaurant</mat-icon> {{recipe.tags.join(', ')}}</span>
             <span><img [src]="recipe.author.avatar" alt="Author" class="avatar"> {{recipe.author.firstName}} {{recipe.author.lastName}}</span>
             <span>{{recipe.createdOn | date:'dd MMMM yyyy'}}</span>
+            <button mat-raised-button class="see-button" color="primary" [routerLink]="['/recipes', recipe.id]">Посмотреть</button>
           </div>
-          <button mat-raised-button color="primary">Посмотреть</button>
         </div>
         <div class="image-section">
           <img [src]="recipe.image" alt="{{recipe.title}}">
@@ -26,7 +26,7 @@
   <p style="align-items: center;">На нашем сайте вы найдете лучшие рецепты, которые помогут вам создать великолепные блюда и порадовать своих близких и гостей своим кулинарным мастерством.</p>
   <div class="recipe-cards">
     <mat-card *ngFor="let recipe of recipes" class="recipe-card">
-      <img mat-card-image [src]="recipe.image" alt="{{recipe.title}}">
+      <img mat-card-image [src]="recipe.image" alt="{{recipe.title}}" [routerLink]="['/recipes/', recipe.id]" style="cursor:pointer;">
       <mat-card-title>{{recipe.title}}</mat-card-title>
       <mat-card-subtitle>{{recipe.body}}</mat-card-subtitle>
       <mat-card-content>
@@ -35,8 +35,38 @@
       </mat-card-content>
     </mat-card>
   </div>
-  <button mat-raised-button color="primary" (click)="loadMoreRecipes()">Посмотреть еще</button>
+  <button *ngIf="showLoadMoreButton" mat-raised-button color="primary" (click)="loadMoreRecipes()">Посмотреть еще</button>
 </div>
+
+<div class="more-recipes">
+  <div class="more-recipes-header">
+    <div class="column title-column">
+      <div class="more-recipes-title">Попробуйте эти вкусные<br />рецепты</div>
+    </div>
+    <div class="column description-column">
+      <div class="more-recipes-description">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+      </div>
+    </div>
+  </div>
+  <div class="more-recipes-list">
+    <div *ngFor="let recipe of recipes4" class="more-recipes-item">
+      <img loading="lazy" [src]="recipe.image" class="more-recipes-image" [routerLink]="['/recipes/', recipe.id]" style="cursor:pointer;"/>
+      <div class="more-recipes-item-title">{{ recipe.title }}</div>
+      <div class="more-recipes-meta">
+        <div class="more-recipes-meta-item">
+          <mat-icon>schedule</mat-icon>
+          <span>{{ recipe.timeCooking }} минут</span>
+        </div>
+        <div class="more-recipes-meta-item" *ngFor="let tag of recipe.tags">
+          <mat-icon>restaurant</mat-icon>
+          <span>{{ tag }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <section class="why-us-container">
   <h2 class="why-us-header">Почему именно мы?</h2>
   <div class="features-grid">

@@ -1,12 +1,18 @@
-<div class="error-container">
-  <div class="error-content">
-    <h1>404 Ошибка</h1>
-    <h2>Страница не найдена</h2>
-    <p>К сожалению, мы не смогли найти страницу, которую вы ищете</p>
-    <a class="link" (click)="goBack()">Назад →</a>
-    <a class="link" routerLink="/">На главную →</a>
+<div class="error-page">
+  <div class="content-wrapper">
+    <section class="error-content">
+      <header class="error-header">
+        <p class="error-code">404 ОШИБКА</p>
+        <h1 class="error-title">Страница не найдена</h1>
+        <p class="error-description">К сожалению, мы не смогли найти страницу, которую вы ищете</p>
+      </header>
+      <nav class="error-navigation">
+        <a class="error-link" (click)="goBack()">Назад →</a>
+        <a class="error-link" routerLink="/">На главную →</a>
+      </nav>
+    </section>
   </div>
-  <div class="error-image">
-    <img src="assets/Image/image_404.png" alt="404 Error">
+  <div class="image-wrapper">
+    <img src="assets\Image\image_404.png" alt="Иллюстрация ошибки 401" class="error-image" />
   </div>
 </div>

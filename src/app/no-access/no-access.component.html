@@ -1,12 +1,18 @@
-<div class="error-container">
-  <div class="error-content">
-    <h1>401 Ошибка</h1>
-    <h2>Доступ запрещен</h2>
-    <p>У вас нет прав на просмотр этого отдела</p>
-    <a class="link" (click)="goBack()">Назад →</a>
-    <a class="link" routerLink="/">На главную →</a>
+<div class="error-page">
+  <div class="content-wrapper">
+    <section class="error-content">
+      <header class="error-header">
+        <p class="error-code">401 ОШИБКА</p>
+        <h1 class="error-title">Доступ запрещен</h1>
+        <p class="error-description">У вас нет прав на просмотр этого раздела</p>
+      </header>
+      <nav class="error-navigation">
+        <a class="error-link" (click)="goBack()">Назад →</a>
+        <a class="error-link" routerLink="/">На главную →</a>
+      </nav>
+    </section>
   </div>
-  <div class="error-image">
-    <img src="assets/Image/image_404.png" alt="401 Error">
+  <div class="image-wrapper">
+    <img src="assets\Image\image_404.png" alt="Иллюстрация ошибки 401" class="error-image" />
   </div>
 </div>

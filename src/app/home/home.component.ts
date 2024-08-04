@@ -11,15 +11,19 @@ import * as Notiflix from 'notiflix';
 export class HomeComponent implements OnInit {
 
   constructor(private dataService: DataService) { }
-  recipes: Recipe[] =[];
+  recipes: Recipe[] = [];
+  recipes4: Recipe[] = [];
   allRecipes: Recipe[] = [];
+  firstThreeRecipes: Recipe[] = [];
   email = '';
   create_email!: string;
+  showLoadMoreButton = true;
   
   onSubmit(){
     this.email = this.create_email;
     Notiflix.Notify.info('Вы подписались на рассылку')
   }
+
   ngOnInit() {
     this.loadInitialRecipes();
   }
@@ -28,7 +32,9 @@ export class HomeComponent implements OnInit {
     this.dataService.getRecipes().subscribe({
       next: (response: Recipe[]) => {
         this.allRecipes = response;
-        this.loadMoreRecipes();
+        this.firstThreeRecipes = this.allRecipes.splice(0, 3);
+        this.recipes4 = this.getRandomRecipes(4);
+        this.recipes = this.getRandomRecipes(3, this.recipes4);
       },
       error: (err) => {
         console.error('Ошибка при получении рецептов:', err);
@@ -37,20 +43,19 @@ export class HomeComponent implements OnInit {
   }
 
   loadMoreRecipes() {
-    if (this.allRecipes.length > 0) {
-      const randomRecipes = this.getRandomRecipes(3);
-      this.recipes.push(...randomRecipes);
-    } else {
-      Notiflix.Notify.info('Все рецепты показаны.');
-    }
+    const newRecipes = this.getRandomRecipes(3, this.recipes);
+    this.recipes.push(...newRecipes);
+    this.showLoadMoreButton = false;
   }
 
-  getRandomRecipes(count: number): Recipe[] {
+  getRandomRecipes(count: number, exclude: Recipe[] = []): Recipe[] {
     const selectedRecipes: Recipe[] = [];
+    const excludeIds = new Set(exclude.map(recipe => recipe.id));
+    const availableRecipes = this.allRecipes.filter(recipe => !excludeIds.has(recipe.id));
     for (let i = 0; i < count; i++) {
-      if (this.allRecipes.length === 0) break;
-      const randomIndex = Math.floor(Math.random() * this.allRecipes.length);
-      selectedRecipes.push(this.allRecipes.splice(randomIndex, 1)[0]);
+      if (availableRecipes.length === 0) break;
+      const randomIndex = Math.floor(Math.random() * availableRecipes.length);
+      selectedRecipes.push(availableRecipes.splice(randomIndex, 1)[0]);
     }
     return selectedRecipes;
   }
@@ -59,22 +64,18 @@ export class HomeComponent implements OnInit {
     {
       title: 'Проверенные рецепты',
       description: 'Вы можете найти множество проверенных рецептов, которые помогут вам приготовить вкусные и разнообразные блюда для всей семьи.',
-      imageUrl: 'https://cdn.builder.io/api/v1/image/assets/TEMP/ce090627a235fcda488fd640814d5293c28f3b3c9f537b3cca1523d09fedb9b1?apiKey=25534841c82449f2985f9814cb770144&&apiKey=25534841c82449f2985f9814cb770144'
     },
     {
       title: 'Для всех',
       description: 'Вы сможете найти легкие и вкусные блюда, которые понравятся и детям, и взрослым.',
-      imageUrl: 'https://cdn.builder.io/api/v1/image/assets/TEMP/ce090627a235fcda488fd640814d5293c28f3b3c9f537b3cca1523d09fedb9b1?apiKey=25534841c82449f2985f9814cb770144&&apiKey=25534841c82449f2985f9814cb770144'
     },
     {
       title: 'Огромное разнообразие',
       description: 'Разнообразие рецептов для всех порадует самых разносторонних гурманов',
-      imageUrl: 'https://cdn.builder.io/api/v1/image/assets/TEMP/ce090627a235fcda488fd640814d5293c28f3b3c9f537b3cca1523d09fedb9b1?apiKey=25534841c82449f2985f9814cb770144&&apiKey=25534841c82449f2985f9814cb770144'
     },
     {
       title: 'Храним рецепты для вас',
       description: 'Это отличный способ организовать и хранить свою коллекцию кулинарных рецептов. Вместо того, чтобы хранить бумажные копии или оставлять их в разных кулинарных книгах.',
-      imageUrl: 'https://cdn.builder.io/api/v1/image/assets/TEMP/ce090627a235fcda488fd640814d5293c28f3b3c9f537b3cca1523d09fedb9b1?apiKey=25534841c82449f2985f9814cb770144&&apiKey=25534841c82449f2985f9814cb770144'
     }
     ];
 }

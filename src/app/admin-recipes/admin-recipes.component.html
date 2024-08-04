@@ -1,3 +1,25 @@
-<p>
-  admin-recipes works!
-</p>
+<app-admin-header>
+<table class="recipe-table">
+  <thead>
+    <tr>
+      <th>Название рецепта</th>
+      <th>Краткое описание</th>
+      <th>ID рецепта</th>
+      <th>Категория</th>
+      <th>Действия</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let recipe of recipes1">
+      <td>{{ recipe.title }}</td>
+      <td>{{ getShortDescription(recipe.body) }}</td>
+      <td>{{ getShortId(recipe.id) }}</td>
+      <td>{{ recipe.tags.join(', ') }}</td>
+      <td>
+        <button (click)="onViewRecipe(recipe.id)" class="action-button edit-button">✏️</button>
+        <button (click)="onDeleteRecipe(recipe.id)" class="action-button delete-button">🗑️</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<router-outlet></router-outlet>

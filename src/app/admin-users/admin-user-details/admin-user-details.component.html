@@ -1,3 +1,65 @@
-<p>
-  admin-user-details works!
-</p>
+<div class="user-details">
+  <div class="user-header">
+    <img [src]="user.avatar" alt="{{ user.username }}" class="user-avatar">
+    <div class="user-info">
+      <h2>{{ user.firstName }} {{ user.lastName }}</h2>
+      <p>{{ user.username }}</p>
+      <span class="status" [class.active]="user.isActive">{{ user.isActive ? 'Активен' : 'Неактивен' }}</span>
+      <button (click)="onDeleteUser()" class="action-button delete-button">Удалить</button>
+    </div>
+  </div>
+
+  <div class="user-stats">
+    <div class="stat">
+      <span>Всего рецептов</span>
+      <strong>{{ user.posts.length }}</strong>
+    </div>
+    <div class="stat">
+      <span>Всего комментариев</span>
+      <strong>{{ user.comments.length }}</strong>
+    </div>
+    <div class="stat">
+      <span>Статус</span>
+      <strong>{{ user.isActive ? 'Активен' : 'Неактивен' }}</strong>
+    </div>
+  </div>
+
+  <div class="user-recipes">
+    <h3>Созданные рецепты</h3>
+    <div class="recipe-list">
+      <div class="recipe" *ngFor="let post of user.posts">
+        <img [src]="post.image" alt="{{ post.title }}">
+        <div>
+          <h4>{{ post.title }}</h4>
+          <p>Создан: {{ post.createdOn}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="user-info-table">
+    <h3>Информация аккаунта</h3>
+    <table>
+      <tr>
+        <th>Фамилия</th>
+        <td>{{ user.lastName }}</td>
+      </tr>
+      <tr>
+        <th>Имя</th>
+        <td>{{ user.firstName }}</td>
+      </tr>
+      <tr>
+        <th>Отчество</th>
+        <td>{{ user.middleName }}</td>
+      </tr>
+      <tr>
+        <th>User-Agent</th>
+        <td>{{ user.userAgent }}</td>
+      </tr>
+      <tr>
+        <th>Последний раз заходил</th>
+        <td>{{ user.lastEntry}}</td>
+      </tr>
+    </table>
+  </div>
+</div>

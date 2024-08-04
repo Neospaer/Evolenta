@@ -1,12 +1,15 @@
-.container {
+  .container {
     text-align: center;
+    margin-top: 10px;
+    position: relative;
+    z-index: 1;
   }
   
   .recipe-cards {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     gap: 20px;
+    justify-items: center;
   }
   
   .recipe-card {
@@ -18,6 +21,7 @@
     width: 100%;
     height: 400px;
     overflow: hidden;
+    margin-bottom: 20px;
   }
   
   .slide-content {
@@ -25,13 +29,24 @@
     align-items: center;
     justify-content: space-between;
     padding: 20px;
+    position: relative;
+    max-height: 400px; 
+    overflow: hidden; 
   }
   
   .text-section {
     flex: 1;
     padding: 20px;
+    max-height: 100%;
+    overflow: hidden; 
   }
   
+  .text-section p {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-clamp: 3;
+    box-orient: vertical;
+  }
   .image-section {
     flex: 1;
     display: flex;
@@ -284,4 +299,88 @@
       white-space: normal;
       padding: 13px 20px;
     }
+  }
+  .more-recipes {
+    padding: 20px;
+    margin-top: 60px;
+  }
+  
+  .more-recipes-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  
+  .title-column,
+  .description-column {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .more-recipes-title {
+    font-size: 30px;
+    font-weight: bold;
+    margin-left: 10%;
+  }
+  
+  .more-recipes-description {
+    font-size: 20px;
+  }
+  
+  .more-recipes-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+  }
+  
+  .more-recipes-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    border-radius: 10px;
+    overflow: hidden;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+  }
+  
+  .more-recipes-image-container {
+    width: 100%;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    border-radius: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .more-recipes-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .more-recipes-item-title {
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .more-recipes-meta {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+  }
+  
+  .more-recipes-meta-item {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+  }
+  
+  .mat-icon {
+    margin-right: 5px;
   }

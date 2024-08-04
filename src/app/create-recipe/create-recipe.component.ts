@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DataService } from '../Service/data.service';
 import * as Notiflix from 'notiflix';
@@ -9,8 +9,7 @@ import * as Notiflix from 'notiflix';
   templateUrl: './create-recipe.component.html',
   styleUrls: ['./create-recipe.component.css']
 })
-export class CreateRecipeComponent implements OnInit {
-
+export class CreateRecipeComponent{
   createRecipeForm: FormGroup;
 
   constructor(private fb: FormBuilder, private http: HttpClient, private dataService: DataService) {
@@ -18,7 +17,7 @@ export class CreateRecipeComponent implements OnInit {
       title: ['', Validators.required],
       body: ['', Validators.required],
       tags: this.fb.array([]),
-      image: ['', Validators.required],
+      image: '',
       timeCooking: ['', Validators.required],
       foodValue: this.fb.group({
         calories: ['', Validators.required],
@@ -30,8 +29,6 @@ export class CreateRecipeComponent implements OnInit {
       ingredients: this.fb.array([])
     });
   }
-
-  ngOnInit(): void { }
 
   get tags(): FormArray {
     return this.createRecipeForm.get('tags') as FormArray;
@@ -46,7 +43,7 @@ export class CreateRecipeComponent implements OnInit {
   }
 
   addTag(): void {
-    this.tags.push(this.fb.control(''));
+    this.tags.push(this.fb.control('', Validators.required));
   }
 
   addCookingStep(): void {
@@ -64,19 +61,19 @@ export class CreateRecipeComponent implements OnInit {
   }
 
   onSubmit(): void {
-    // if (this.createRecipeForm.valid) {
+    if (this.createRecipeForm.valid) {
       this.dataService.createRecipe(this.createRecipeForm.value)
-        .subscribe(
-          response => {
+        .subscribe({
+          next: () => {
             Notiflix.Notify.success('Рецепт успешно создан');
             this.createRecipeForm.reset();
           },
-          error => {
+          error: () => {
             Notiflix.Notify.failure('Ошибка при создании рецепта');
           }
-        );
-    // } else {
-    //   Notiflix.Notify.warning('Пожалуйста, заполните все обязательные поля');
-    // }
+          });
+    } else {
+      Notiflix.Notify.warning('Пожалуйста, заполните все обязательные поля');
+    }
   }
 }

@@ -13,6 +13,7 @@ import { AdminUserDetailsComponent } from './admin-users/admin-user-details/admi
 import { HomeComponent } from './home/home.component';
 import { NoAccessComponent } from './no-access/no-access.component';
 import { AdminerGuard } from './Guards/adminer.guard';
+import { RecipeComponent } from './recipe/recipe.component';
 
 const routes: Routes = [
   {
@@ -21,7 +22,11 @@ const routes: Routes = [
   },
   {
     path: 'recipes',
-    component: RecipesComponent
+    component: RecipesComponent,
+  },
+  {
+    path: 'recipes/:id',
+    component: RecipeComponent
   },
   {
     path: 'create-recipe',
@@ -42,25 +47,22 @@ const routes: Routes = [
   {
     path: 'admin/users',
     component: AdminUsersComponent,
-    canActivate: [AdminerGuard],
-    children:
-    [
-      {
-        path: ':id',
-        component: AdminUserDetailsComponent
-      }
-    ]
+    canActivate: [AdminerGuard]
+  },
+  {
+    path: 'admin/users/:id',
+    component: AdminUserDetailsComponent,
+    canActivate: [AdminerGuard]
   },
   {
     path: 'admin/recipes',
     component: AdminRecipesComponent,
-    children:
-    [
-      {
-        path: ':id',
-        component: AdminRecipeDetailsComponent
-      }
-    ]
+    canActivate: [AdminerGuard],
+  },
+  {
+    path: 'admin/recipes/:id',
+    component: AdminRecipeDetailsComponent,
+    canActivate: [AdminerGuard]
   },
   {
     path: '**',
