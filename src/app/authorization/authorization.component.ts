@@ -37,7 +37,7 @@ export class AuthorizationComponent{
     this.roleService.login(username, password).subscribe(
       response => {
         if (quickSession) {
-          // Логика для быстрого сеанса (например, установка токена с коротким сроком действия)
+          // Логику для быстрого сеанса не реализовал ;(
         }
         Notify.success('Авторизация прошла успешно!');
         this.router.navigate(['/']);

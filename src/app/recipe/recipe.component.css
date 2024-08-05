@@ -5,15 +5,11 @@
     padding: 20px;
   }
   
-  .recipe-title {
-    font-size: 36px;
-    margin-bottom: 20px;
-  }
-  
   .author-info {
     display: flex;
     align-items: center;
     margin-bottom: 20px;
+    position: relative; /* Добавляем для правильного позиционирования кнопки */
   }
   
   .author-avatar {
@@ -26,6 +22,7 @@
   .author-details {
     display: flex;
     flex-direction: column;
+    flex-grow: 1; /* Позволяет элементу занимать все доступное пространство */
   }
   
   .author-name {
@@ -43,6 +40,24 @@
     display: flex;
     align-items: center;
     gap: 5px;
+  }
+  
+  .share-button {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 8px 16px;
+    background-color: #4CAF50; /* Цвет кнопки, измените по необходимости */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+  
+  .share-button:hover {
+    background-color: #45a049; /* Измените цвет при наведении */
   }
   
   .recipe-main {
@@ -123,4 +138,41 @@
   .step-details h4 {
     margin: 0 0 5px 0;
   }
+  .comments-section {
+    margin-top: 30px;
+  }
   
+  .comment {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 20px;
+    align-items: center;
+  }
+  
+  .comment-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+  
+  .comment-details {
+    background-color: #F7F7F7;
+    padding: 10px;
+    border-radius: 5px;
+    flex: 1;
+  }
+  
+  .comment-author {
+    font-weight: bold;
+  }
+  
+  .comment-text {
+    margin-top: 5px;
+  }
+  
+  .comment-date {
+    font-size: 12px;
+    color: #888;
+    margin-top: 5px;
+  }

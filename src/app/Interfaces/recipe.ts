@@ -88,3 +88,9 @@ export interface AddRecipe {
 export interface Commit{
   text: string
 }
+export interface AllCommit{
+  User: ShortUser,
+  text: string,
+  createTime: Date,
+  updateTime?: Date
+}

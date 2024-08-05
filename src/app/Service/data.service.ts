@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { CreateRecipe, Recipe, RecipeById } from '../Interfaces/recipe';
+import { Commit, CreateRecipe, Recipe, RecipeById } from '../Interfaces/recipe';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Auth, User, UserById } from '../Interfaces/User';
 
@@ -19,7 +19,7 @@ export class DataService {
   }
 
   public getUser(id: string) {
-    return this.http.get<UserById>(`users/${id}`);
+    return this.http.get<UserById>(`https://evo-academy.wckz.dev/api/cooking-blog/users/${id}`);
   }
   
   public deleteUser(id: string){
@@ -45,5 +45,9 @@ export class DataService {
 
   public deleteRecipe(id: string) {
     return this.http.delete(`https://evo-academy.wckz.dev/api/cooking-blog/posts/${id}`)
+  }
+  
+  public createCommit(id: string, comment: string){
+    return this.http.post<Commit>(`https://evo-academy.wckz.dev/api/cooking-blog/posts/${id}/add-comment`,comment)
   }
 }

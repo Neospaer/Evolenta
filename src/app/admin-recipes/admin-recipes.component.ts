@@ -11,15 +11,20 @@ import { Recipe } from '../Interfaces/recipe';
 })
 export class AdminRecipesComponent implements OnInit {
 
-  recipes1: Recipe[] = [];
+  recipes: Recipe[] = [];
 
   constructor(private dataService: DataService, private router: Router) {}
 
   ngOnInit(): void {
-    this.dataService.getRecipes().subscribe((data: Recipe[]) => {
-      this.recipes1 = data;
-    });
-    console.log(this.recipes1)
+    this.dataService.getRecipes().subscribe({
+      next: (data: Recipe[]) => {
+        this.recipes = data;
+        console.log("Данные: ",this.recipes)
+      },
+      error: () => {
+        console.log('Ошибка')
+      }
+    })
   }
 
   onViewRecipe(recipeId: string): void {
@@ -35,7 +40,7 @@ export class AdminRecipesComponent implements OnInit {
       () => {
         this.dataService.deleteRecipe(recipeId).subscribe(() => {
           Notiflix.Notify.success('Рецепт удален');
-          this.recipes1 = this.recipes1.filter(recipe1 => recipe1.id !== recipeId);
+          this.recipes = this.recipes.filter(recipe => recipe.id !== recipeId);
         });
       },
       () => {

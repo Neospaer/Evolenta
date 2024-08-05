@@ -15,6 +15,7 @@
         </span>
       </div>
     </div>
+    <button class="share-button" (click)="onShareRecipe()">Поделиться</button>
   </div>
 
   <div class="recipe-main">
@@ -51,4 +52,17 @@
       </li>
     </ul>
   </div>
+
+  <div class="comments-section">
+    <h3>Комментарии</h3>
+    <div *ngFor="let comment of AllCommit" class="comment">
+      <img [src]="comment.User.avatar" alt="{{ comment.User.firstName }} {{ comment.User.lastName }}" class="comment-avatar">
+      <div class="comment-details">
+        <div class="comment-author">{{ comment.User.firstName }} {{ comment.User.lastName }}</div>
+        <div class="comment-text">{{ comment.text }}</div>
+        <div class="comment-date">{{ comment.createTime | date }}</div>
+      </div>
+    </div>
+  </div>
+
 </div>

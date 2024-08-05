@@ -1,10 +1,15 @@
 <div class="user-details">
   <div class="user-header">
-    <img [src]="user.avatar" alt="{{ user.username }}" class="user-avatar">
+    <div class="user-avatar-container">
+      <img [src]="user.avatar" class="user-avatar">
+    </div>
     <div class="user-info">
       <h2>{{ user.firstName }} {{ user.lastName }}</h2>
-      <p>{{ user.username }}</p>
+      <p>{{ user.role }}</p>
+      <p>Дата регистрации: {{ user.createdOn | date:'short'}}</p>
       <span class="status" [class.active]="user.isActive">{{ user.isActive ? 'Активен' : 'Неактивен' }}</span>
+    </div>
+    <div class="delete-button-container">
       <button (click)="onDeleteUser()" class="action-button delete-button">Удалить</button>
     </div>
   </div>
@@ -18,20 +23,16 @@
       <span>Всего комментариев</span>
       <strong>{{ user.comments.length }}</strong>
     </div>
-    <div class="stat">
-      <span>Статус</span>
-      <strong>{{ user.isActive ? 'Активен' : 'Неактивен' }}</strong>
-    </div>
   </div>
 
-  <div class="user-recipes">
-    <h3>Созданные рецепты</h3>
-    <div class="recipe-list">
-      <div class="recipe" *ngFor="let post of user.posts">
-        <img [src]="post.image" alt="{{ post.title }}">
-        <div>
-          <h4>{{ post.title }}</h4>
-          <p>Создан: {{ post.createdOn}}</p>
+  <div class="user-recipes" *ngIf="user.posts.length > 0">
+    <div class=" title-create">Созданные рецепты</div>
+    <div class="recipe-cards">
+      <div *ngFor="let recipe of recipes" class="recipe-card">
+        <img [src]="recipe.image"class="recipe-image"/>
+        <div class="recipe-info">
+          <p class="recipe-title">{{ recipe.title}}</p>
+          <p class="recipe-date">Создан: {{ recipe.createdOn | date: 'short'}}</p>
         </div>
       </div>
     </div>
@@ -53,12 +54,8 @@
         <td>{{ user.middleName }}</td>
       </tr>
       <tr>
-        <th>User-Agent</th>
-        <td>{{ user.userAgent }}</td>
-      </tr>
-      <tr>
         <th>Последний раз заходил</th>
-        <td>{{ user.lastEntry}}</td>
+        <td>{{ user.lastEntry }}</td>
       </tr>
     </table>
   </div>

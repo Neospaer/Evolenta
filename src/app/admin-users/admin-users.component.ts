@@ -22,9 +22,6 @@ export class AdminUsersComponent implements OnInit {
     });
   }
 
-  onViewUser(userId: string): void {
-    this.router.navigate([`/admin/users/${userId}`]);
-  }
 
   onDeleteUser(userId: string): void {
     Notiflix.Confirm.show(

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from '../Service/data.service';
 import { Recipe } from '../Interfaces/recipe';
 import * as Notiflix from 'notiflix';
+import { Meta, Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-home',
@@ -10,7 +11,7 @@ import * as Notiflix from 'notiflix';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private dataService: DataService) { }
+  constructor(private dataService: DataService,private meta: Meta, private titleService: Title) { }
   recipes: Recipe[] = [];
   recipes4: Recipe[] = [];
   allRecipes: Recipe[] = [];
@@ -26,6 +27,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.loadInitialRecipes();
+    this.meta.addTag({ name: 'Foodie: Главная', content: 'Сборник кулинарных рецептов, для всей семьи' });
   }
 
   loadInitialRecipes() {

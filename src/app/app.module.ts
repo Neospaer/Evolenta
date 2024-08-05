@@ -27,16 +27,18 @@ import { DataService } from './Service/data.service';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './home/home.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { LoginInterceptor } from './Interceptor/login.interceptor';
+import { LoginInterceptor } from './interceptor/login.interceptor';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { MatMenuModule } from '@angular/material/menu';
 import { NoAccessComponent } from './no-access/no-access.component';
 import { AdminHeaderComponent } from './admin-header/admin-header.component';
 import { RecipeComponent } from './recipe/recipe.component';
 import { CommonModule } from '@angular/common';
+import { AdminUserDetailsComponent } from './admin-users/admin-user-details/admin-user-details.component';
+import { AdminRecipeDetailsComponent } from './admin-recipes/admin-recipe-details/admin-recipe-details.component';
 
 @NgModule({
-  declarations: [											
+  declarations: [												
     AppComponent,
       ErrorComponent,
       AuthorizationComponent,
@@ -44,6 +46,8 @@ import { CommonModule } from '@angular/common';
       RecipesComponent,
       CreateRecipeComponent,
       AdminUsersComponent,
+      AdminUserDetailsComponent,
+      AdminRecipeDetailsComponent,
       AdminRecipesComponent,
       HomeComponent,
       NoAccessComponent,

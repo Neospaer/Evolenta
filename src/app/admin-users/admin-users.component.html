@@ -1,5 +1,5 @@
   <app-admin-header></app-admin-header>
-  <table class="user-table">
+  <table class="user-table" *ngIf="users">
     <thead>
       <tr>
         <th>Наименование</th>
@@ -11,7 +11,7 @@
     <tbody>
       <tr *ngFor="let user of users">
         <td>
-          <img [src]="user.avatar" alt="{{ user.username }}" class="user-avatar">
+          <img [src]="user.avatar" class="user-avatar">
           <div>
             <div>{{ user.firstName }} {{ user.lastName }}</div>
             <div class="user-username">{{ user.username }}</div>
@@ -22,7 +22,7 @@
         </td>
         <td>{{ user.role }}</td>
         <td>
-          <button (click)="onViewUser(user.id)" class="action-button edit-button">✏️</button>
+          <button [routerLink]="['/admin/users/', user.id]" style="cursor:pointer;" class="action-button edit-button">✏️</button>
           <button (click)="onDeleteUser(user.id)" class="action-button delete-button">🗑️</button>
         </td>
       </tr>
