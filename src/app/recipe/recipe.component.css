@@ -9,7 +9,7 @@
     display: flex;
     align-items: center;
     margin-bottom: 20px;
-    position: relative; /* Добавляем для правильного позиционирования кнопки */
+    position: relative;
   }
   
   .author-avatar {
@@ -22,7 +22,7 @@
   .author-details {
     display: flex;
     flex-direction: column;
-    flex-grow: 1; /* Позволяет элементу занимать все доступное пространство */
+    flex-grow: 1;
   }
   
   .author-name {
@@ -48,7 +48,7 @@
     top: 50%;
     transform: translateY(-50%);
     padding: 8px 16px;
-    background-color: #4CAF50; /* Цвет кнопки, измените по необходимости */
+    background-color: #4CAF50;
     color: white;
     border: none;
     border-radius: 4px;
@@ -57,7 +57,7 @@
   }
   
   .share-button:hover {
-    background-color: #45a049; /* Измените цвет при наведении */
+    background-color: #45a049;
   }
   
   .recipe-main {

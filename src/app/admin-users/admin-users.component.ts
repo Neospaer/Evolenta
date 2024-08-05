@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../Service/data.service';
 import { User } from '../Interfaces/User';
-import { Notify } from 'notiflix';
 import * as Notiflix from 'notiflix';
 import { Router } from '@angular/router';
 

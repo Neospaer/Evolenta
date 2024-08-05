@@ -37,9 +37,6 @@ export class HomeComponent implements OnInit {
         this.firstThreeRecipes = this.allRecipes.splice(0, 3);
         this.recipes4 = this.getRandomRecipes(4);
         this.recipes = this.getRandomRecipes(3, this.recipes4);
-      },
-      error: (err) => {
-        console.error('Ошибка при получении рецептов:', err);
       }
     });
   }

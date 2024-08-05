@@ -19,10 +19,6 @@ export class AdminRecipesComponent implements OnInit {
     this.dataService.getRecipes().subscribe({
       next: (data: Recipe[]) => {
         this.recipes = data;
-        console.log("Данные: ",this.recipes)
-      },
-      error: () => {
-        console.log('Ошибка')
       }
     })
   }

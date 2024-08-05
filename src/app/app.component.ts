@@ -36,7 +36,6 @@ export class AppComponent implements OnInit{
     this.isLoggedIn$.subscribe(isLoggedIn => {
       if (isLoggedIn) {
         this.user = this.roleService.currentUser;
-        console.log(this.user)
       }
     });
   }
